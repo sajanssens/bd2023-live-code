@@ -22,8 +22,8 @@ public class Beer {
     }
 
     public static void main(String[] args) {
-        String bottles = bottles(5);
-        for (int n = 5; n > 0; n--) {
+        String bottles = bottles(99);
+        for (int n = 99; n > 0; n--) {
             System.out.println(bottles + " on the wall");
             System.out.println(bottles);
             System.out.println("Take one down, pass it around");
