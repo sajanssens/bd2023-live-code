@@ -1,6 +1,6 @@
 package nl.bramjanssens.firsttry;
 
-import java.text.MessageFormat;
+import static java.text.MessageFormat.format;
 
 // import ...;
 // import ...;
@@ -18,8 +18,8 @@ public class Beer {
     // single line comment
     //.....
 
-    static String bottles(int n) {
-        return MessageFormat.format("{0,choice,0#No more bottles|1#One bottle|2#{0} bottles} of beer", n);
+    public static String bottles(int n) {
+        return format("{0,choice,0#No more bottles|1#One bottle|2#{0} bottles} of beer", n);
     }
 
     public static void main(String[] args) {
