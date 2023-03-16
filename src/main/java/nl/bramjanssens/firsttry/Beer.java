@@ -13,6 +13,7 @@ import java.text.MessageFormat;
  * blah blah blah blah blah blah
  */
 public class Beer {
+    public static final int NUMBER_OF_BEERS = 99;
 
     // single line comment
     //.....
@@ -22,7 +23,7 @@ public class Beer {
     }
 
     public static void main(String[] args) {
-        String bottles = bottles(99);
+        String bottles = bottles(NUMBER_OF_BEERS);
         for (int n = 99; n > 0; n--) {
             System.out.println(bottles + " on the wall");
             System.out.println(bottles);
