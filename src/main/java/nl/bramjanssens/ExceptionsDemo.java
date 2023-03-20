@@ -13,7 +13,7 @@ public class ExceptionsDemo {
             System.out.println("einde try");
             return;
         } catch (RadioBergeijkException e) {
-            System.out.println("Het is verschrikkellllijk!!! " + e.getMessage());
+            System.out.println(e.getMessage());
             return;
         } finally {
             System.out.println("Het is lente!!");
