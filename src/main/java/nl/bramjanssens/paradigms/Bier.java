@@ -3,7 +3,7 @@ package nl.bramjanssens.paradigms;
 public class Bier {
 
     // STATE (data) (fields, attributes)
-    private String type;
+    public String type;
     private Biertype typeAlsEnum;
     private double alcoholpercentage;
 
@@ -22,6 +22,12 @@ public class Bier {
         type = t.getName();
         typeAlsEnum = t;
         setAlcoholpercentage(a);
+    }
+
+    public Bier(Bier teKopierenBiertje) {
+        type = new String(teKopierenBiertje.type.toCharArray());
+        setAlcoholpercentage(teKopierenBiertje.alcoholpercentage);
+        typeAlsEnum = teKopierenBiertje.typeAlsEnum;
     }
 
     public void setType(String eenType) {
