@@ -14,8 +14,8 @@ public class Bier {
 
     // overloading
     public Bier(String eenType, double a) { // constructor
-        type = eenType;
-        setAlcoholpercentage(a);
+        this(Biertype.T, a);
+        this.type = eenType;
     }
 
     public Bier(Biertype t, double a) {
