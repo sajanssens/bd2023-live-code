@@ -1,8 +1,8 @@
-package nl.bramjanssens;
+package nl.bramjanssens.arraylists;
 
 import java.util.ArrayList;
 
-public class ArrayLists {
+public class ArrayListDemo {
 
     public static void main(String[] args) {
         // met arrays:
