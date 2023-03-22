@@ -14,12 +14,20 @@ public class CijferadministratieMetList {
 
     public double berekenGemiddeldeImperativeProceduralStyle() {
         double som = 0.0;
+        int aantal = 0;
+
         for (Integer cijfer : cijfers) {
             if (cijfer >= 6) {
                 som += cijfer;
+                aantal++;
             }
         }
-        return som / cijfers.size();
+
+        if (aantal > 0) {
+            return som / aantal;
+        } else {
+            return 0.0;
+        }
     }
 
     public double berekenGemiddeldeDeclarativeFunctionalStyle() {

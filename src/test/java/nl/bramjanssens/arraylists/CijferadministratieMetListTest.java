@@ -12,7 +12,7 @@ class CijferadministratieMetListTest {
     @BeforeEach
     void setUp() {
         this.target = new CijferadministratieMetList();
-        this.target.voegNieuweCijfersToe(/*1, 2, 3,*/ 7, 8, 9);
+        this.target.voegNieuweCijfersToe(1, 2, 3, 7, 8, 9);
     }
 
     @Test
