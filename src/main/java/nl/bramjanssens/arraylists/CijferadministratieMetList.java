@@ -6,25 +6,27 @@ public class CijferadministratieMetList {
 
     private ArrayList<Integer> cijfers = new ArrayList<>();
 
-    public void voegNieuwCijferToe(int cijfer) {
-        cijfers.add(cijfer);
+    public void voegNieuweCijfersToe(int... cijfers) {
+        for (int cijfer : cijfers) {
+            this.cijfers.add(cijfer);
+        }
     }
 
-    public void berekenGemiddeldeImperativeProceduralStyle() {
+    public double berekenGemiddeldeImperativeProceduralStyle() {
         double som = 0.0;
         for (Integer cijfer : cijfers) {
-            som += cijfer;
+            if (cijfer >= 6) {
+                som += cijfer;
+            }
         }
-        System.out.println(som / cijfers.size());
+        return som / cijfers.size();
     }
 
-    public void berekenGemiddeldeDeclarativeFunctionalStyle() {
-        double result = cijfers.stream()
+    public double berekenGemiddeldeDeclarativeFunctionalStyle() {
+        return cijfers.stream()
                 .filter(i -> i >= 6)
                 .mapToInt(i -> i.intValue())
                 .average()
                 .orElse(0.0);
-
-        System.out.println(result);
     }
 }
