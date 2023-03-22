@@ -10,7 +10,7 @@ public class CijferadministratieMetList {
         cijfers.add(cijfer);
     }
 
-    public void berekenGemiddelde() {
+    public void berekenGemiddeldeImperativeProceduralStyle() {
         double som = 0.0;
         for (Integer cijfer : cijfers) {
             som += cijfer;
@@ -18,10 +18,10 @@ public class CijferadministratieMetList {
         System.out.println(som / cijfers.size());
     }
 
-    public void berekenGemiddeldeAlternatieveManier() {
+    public void berekenGemiddeldeDeclarativeFunctionalStyle() {
         double result = cijfers.stream()
                 .filter(i -> i >= 6)
-                .mapToInt(i -> i)
+                .mapToInt(i -> i.intValue())
                 .average()
                 .orElse(0.0);
 
