@@ -1,4 +1,4 @@
-package nl.bramjanssens.oo;
+package nl.bramjanssens.oo.inheritance;
 
 public class Polymorphism {
 
