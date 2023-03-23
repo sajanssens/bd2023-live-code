@@ -1,5 +1,7 @@
 package nl.bramjanssens.oo;
 
+import java.util.Objects;
+
 public class Bier {
 
     // Fields -------------------------------------
@@ -52,6 +54,47 @@ public class Bier {
 
     public static String geefReclame() {
         return "Loat ow vollopen, dat is ons advies. Want bier is lekker, en cola vies.";
+    }
+
+    // @Override // annotatie
+    // public boolean equals(Object that) {
+    //     if (that instanceof Bier b) {
+    //         byte volume = b.volume;
+    //         double alcoholPercentage = b.alcoholPercentage;
+    //         String naam = b.naam;
+    //         if (this.volume == volume &&
+    //                 this.alcoholPercentage == alcoholPercentage &&
+    //                 this.naam.equals(naam)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bier bier = (Bier) o;
+        return Double.compare(bier.alcoholPercentage, alcoholPercentage) == 0 && volume == bier.volume && Objects.equals(naam, bier.naam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(naam, alcoholPercentage, volume);
+    }
+
+    // @Override
+    // public String toString() {
+    //     return "Ik zit nog " + getVolume() + "% vol.";
+    // }
+
+    @Override public String toString() {
+        return "Bier{" +
+                "naam='" + naam + '\'' +
+                ", alcoholPercentage=" + alcoholPercentage +
+                ", volume=" + volume +
+                '}';
     }
 
     //      get/set --------------------------------------
