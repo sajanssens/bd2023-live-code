@@ -1,6 +1,10 @@
-package nl.bramjanssens.oo;
+package nl.bramjanssens;
 
-public class Bierwinkel {
+import nl.bramjanssens.oo.Bier;
+import nl.bramjanssens.oo.Krat;
+import nl.bramjanssens.oo.Wijn;
+
+public class BierApp {
 
     public static void main(String[] args) {
         Bier b1 = new Bier();
@@ -34,5 +38,10 @@ public class Bierwinkel {
         if (w1.equals(w2)) {
             System.out.println("Wijngelijk!");
         }
+
+        Krat k = new Krat();
+        b1.setKrat(k);
+        b2.setKrat(k);
+        b3.setKrat(k);
     }
 }

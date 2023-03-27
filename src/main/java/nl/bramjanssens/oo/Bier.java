@@ -12,6 +12,8 @@ public class Bier {
     private final double alcoholPercentage;
     private byte volume = 100;
 
+    private Krat krat;
+
     // Constructors -------------------------------
 
     // constructor:
@@ -121,5 +123,10 @@ public class Bier {
 
     public double getAlcoholPercentage() {
         return alcoholPercentage;
+    }
+
+    public void setKrat(Krat krat) {
+        this.krat = krat;
+        krat.voegToe(this);
     }
 }
