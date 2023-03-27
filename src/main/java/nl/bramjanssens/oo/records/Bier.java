@@ -2,7 +2,7 @@ package nl.bramjanssens.oo.records;
 
 import java.util.Objects;
 
-public class Bier {
+public class Bier { // POJO
 
     private final String naam;
     private final double alc;

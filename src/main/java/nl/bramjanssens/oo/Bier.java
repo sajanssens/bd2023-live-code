@@ -8,7 +8,9 @@ public class Bier {
     public static final String RECEPT_VOOR_PILS = "Niet erg lekker, maar wel goedkoop";
     private static final double MAX_ALC = 16.0;
 
+    @HackDezeMaar
     private final String naam;
+
     private final double alcoholPercentage;
     private byte volume = 100;
 
