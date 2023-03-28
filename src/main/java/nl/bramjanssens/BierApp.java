@@ -40,8 +40,8 @@ public class BierApp {
         }
 
         Krat k = new Krat();
-        b1.setKrat(k);
-        b2.setKrat(k);
-        b3.setKrat(k);
+        k.voegToe(b1);
+        k.voegToe(b2);
+        k.voegToe(b3);
     }
 }

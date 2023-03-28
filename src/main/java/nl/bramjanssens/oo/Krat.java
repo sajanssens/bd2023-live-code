@@ -10,7 +10,7 @@ public class Krat {
 
     ArrayList<Bier> inhoud = new ArrayList<>();
 
-    void voegToe(Bier b) {
+    public void voegToe(Bier b) {
         this.inhoud.add(b);
     }
 }
