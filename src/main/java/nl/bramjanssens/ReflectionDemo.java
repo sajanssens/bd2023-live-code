@@ -3,11 +3,13 @@ package nl.bramjanssens;
 import nl.bramjanssens.oo.Bier;
 import nl.bramjanssens.oo.HackDezeMaar;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 public class ReflectionDemo {
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
         Bier b1 = new Bier();
 
         // Reflection API:
@@ -22,5 +24,11 @@ public class ReflectionDemo {
             }
         }
         System.out.println(b1);
+
+        Constructor<Bier> noArgCtor = bierType.getDeclaredConstructor();
+        Constructor<Bier> twoArgCtor = bierType.getDeclaredConstructor(String.class, Double.class);
+
+        Bier bier = noArgCtor.newInstance();
+        System.out.println(bier);
     }
 }
