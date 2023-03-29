@@ -8,13 +8,19 @@ public class BierDao { // Data Access Object
 
     private ArrayList<Bier> database = new ArrayList<>();
 
-    private static final BierDao instance = new BierDao();
+    // singleton start ----------------------------------------
+    private static BierDao instance;// = new BierDao();
 
     private BierDao() { }
 
     public static BierDao getInstance() {
+        if (instance == null) {
+            instance = new BierDao();
+        }
+
         return instance;
     }
+    // singleton end ------------------------------------------
 
     // CRUD: Create, Read, Update, Delete
     public void voegToe(Bier b) {
