@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+
+       <!-- &lt;!&ndash; append is false for test purposes so the logfiles are automatically overwritten. Don't use this on production. &ndash;&gt;
+        <RollingFile name="fileLogger"  append="false" fileName="target/error.log" filePattern="target/error-%d{yyyy-MM-dd}.%i.log">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                &lt;!&ndash; Rolling once a day &ndash;&gt;
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                &lt;!&ndash; Rolling based on size &ndash;&gt;
+                <SizeBasedTriggeringPolicy size="2 KB" />
+            </Policies>
+        </RollingFile>-->
+    </Appenders>
+
+    <Loggers>
+
+        <!--<Logger name="java.examples.logging" additivity="true">
+            <appender-ref ref="console" level="error" />
+        </Logger>-->
+
+        <Root level="debug">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
