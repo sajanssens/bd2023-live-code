@@ -4,23 +4,12 @@ import nl.bramjanssens.oo.records.Bier;
 
 import java.util.ArrayList;
 
-public class BierDao { // Data Access Object
+public enum BierDao { // Data Access Object
+    // singleton start ----------------------------------------
+    INSTANCE;
+    // singleton end ------------------------------------------
 
     private ArrayList<Bier> database = new ArrayList<>();
-
-    // singleton start ----------------------------------------
-    private static BierDao instance; // = new BierDao();
-
-    private BierDao() { }
-
-    public synchronized static BierDao getInstance() {
-        if (instance == null) {
-            instance = new BierDao();
-        }
-
-        return instance;
-    }
-    // singleton end ------------------------------------------
 
     // CRUD: Create, Read, Update, Delete
     public void voegToe(Bier b) {

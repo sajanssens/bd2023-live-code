@@ -16,7 +16,7 @@ public class MainScreen {
     private JSpinner volumeSpinner;
     private JButton opslaanButton;
 
-    private BierDao dao = BierDao.getInstance();
+    private BierDao dao = BierDao.INSTANCE;
 
     public MainScreen() {
         alcCombo.addItem(5.0);
