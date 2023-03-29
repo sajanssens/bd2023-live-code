@@ -9,11 +9,11 @@ public class BierDao { // Data Access Object
     private ArrayList<Bier> database = new ArrayList<>();
 
     // singleton start ----------------------------------------
-    private static BierDao instance;// = new BierDao();
+    private static BierDao instance; // = new BierDao();
 
     private BierDao() { }
 
-    public static BierDao getInstance() {
+    public synchronized static BierDao getInstance() {
         if (instance == null) {
             instance = new BierDao();
         }
