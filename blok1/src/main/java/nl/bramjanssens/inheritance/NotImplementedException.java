@@ -1,5 +1,3 @@
 package nl.bramjanssens.inheritance;
 
-public class NotImplementedException extends RuntimeException {
-
-}
+public class NotImplementedException extends RuntimeException { }

@@ -9,7 +9,6 @@ public abstract class Employee implements Calculatable {
     private double salary;
 
     public Employee() {
-
     }
 
     public Employee(String name, int id, double salary) {

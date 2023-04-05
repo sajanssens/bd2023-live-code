@@ -19,10 +19,6 @@ public class PermanentEmployee extends Employee implements Comparable<PermanentE
         return 42;
     }
 
-    public int getPosition() {
-        return plus42(position);
-    }
-
     public void setPosition(int position) {
         this.position = position;
     }
@@ -44,7 +40,7 @@ public class PermanentEmployee extends Employee implements Comparable<PermanentE
         return Objects.hash(super.hashCode(), position);
     }
 
-    // @Override
+    @Override
     public int compareTo(PermanentEmployee other) {
         return this.position - other.position;
         // if (this.position < other.position) {
