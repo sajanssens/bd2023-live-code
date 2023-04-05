@@ -19,6 +19,6 @@ public class TemporaryEmployee extends Employee {
 
     @Override
     public double calculateSalary() {
-        return hours * 15;
+        return plus42(hours) * 15;
     }
 }
