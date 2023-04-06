@@ -29,19 +29,23 @@ public class SpecialLocalClasses {
     }
 
     public void anonymous() {
+        int j = 42;
+
         Calculatable c = new Calculatable() {
             @Override public double calculateSalary() {
-                return 52;
+                return j;
             }
         };
 
         calculate(c);
 
+        final int i = 41;
+
         // BONUS
-        calculate(() -> 52);
+        calculate(() -> i);
     }
 
-    public double calculate(Calculatable c) {
+    public double calculate(final Calculatable c) {
         return c.calculateSalary();
     }
 }
