@@ -18,6 +18,11 @@ public class Util {
         }
     }
 
+    // wildcard
+    public static void verwerk(List<?> list) {
+        // U niet gebruikt
+    }
+
     // Variance:
 
     // only List<Person> allowed, nothing else (for T)
