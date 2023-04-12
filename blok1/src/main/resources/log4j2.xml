@@ -11,27 +11,23 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout disableAnsi="false" pattern="${logpattern}"/>
         </Console>
-
-        <!-- append is false for test purposes so the logfiles are automatically overwritten. Don't use this on production. -->
-        <RollingFile name="fileLogger" append="false" fileName="target/error.log" filePattern="target/error-%d{yyyy-MM-dd}.%i.log">
-            <PatternLayout>
-                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
-            </PatternLayout>
-            <Policies>
-                <!-- Rolling once a day -->
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <!-- Rolling based on size -->
-                <SizeBasedTriggeringPolicy size="2 KB"/>
-            </Policies>
-        </RollingFile>
+        <appender name="roll-by-size" class="org.apache.log4j.RollingFileAppender">
+            <param name="file" value="target/log4j/roll-by-size/app.log"/>
+            <param name="MaxFileSize" value="1KB"/>
+            <param name="MaxBackupIndex" value="2"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n"/>
+            </layout>
+        </appender>
     </Appenders>
 
     <Loggers>
         <!-- default -->
-        <Root level="DEBUG">
+        <Root level="TRACE">
             <AppenderRef ref="console"/>
+            <AppenderRef ref="roll-by-size"/>
         </Root>
-        <!-- for everything from nl.bramjanssens -->
+        <!-- for everything from nl.belastingdienst -->
         <Logger name="nl.bramjanssens" level="TRACE"/>
     </Loggers>
 </Configuration>

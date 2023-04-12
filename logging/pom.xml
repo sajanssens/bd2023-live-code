@@ -12,6 +12,13 @@
     <artifactId>logging</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <profile>
             <id>log4j</id>
