@@ -18,8 +18,11 @@ public class Util {
         }
     }
 
-    // Type erasure
-    public static void verwerkSafe(List<Person> list) {
+    // Variance:
+
+    // only List<Person> allowed, nothing else (for T)
+    // reading from and writing to list both allowed and safe
+    public static void verwerkSafeInvariant(List<Person> list) {
         for (Person person : list) {
             System.out.println(person.getName());
         }
@@ -29,34 +32,36 @@ public class Util {
         list.add(new Trainer());
     }
 
-    public static <T> void verwerkSafe2(List<T> list) {
-
-    }
-
     // PECS
     // Producer Extends Consumer Super
 
-    //
-    public static void verwerkSafeCovariant(List<? extends Person> list) {
-        // for (T person : list) {
-        //     System.out.println(person.getName());
-        // }
+    // Extends = Producer: reading from list allowed and safe, writing not
+    public static <T extends Person> void verwerkSafeCovariant(List<T> list) {
+        for (T person : list) {
+            System.out.println(person.getName());
+        }
         // no writing allowed
         // list.add(new Person());
         // list.add(new Trainee());
         // list.add(new Trainer());
     }
 
-    // super
-    public static void verwerkSafeContravariant(List<?> list) {
-        // for (Trainee person : list) {
-        //     System.out.println(person.train());
-        // }
-        //
-        // list.add();
+    // Super = Consumer: writing to list allowed and safe, reading too (but Object)
+    public static void verwerkSafeContravariant(List<? super Person> list) {
+        // reading
+        // element can be anything, so Object
+        for (Object o : list) {
+            System.out.println(o);
+        }
 
+        // writing
+        // allowed are T's that extend Person and Person itself, since that's the only thing we know for sure:
+        list.add(new Person());
+        list.add(new Trainee());
+        list.add(new Trainer());
     }
 
+    // Arrays are covariant, but unsafe
     public static void verwerkUnsafeArray(Person[] array) {
         for (Person person : array) {
             if (person != null)
@@ -66,9 +71,5 @@ public class Util {
         array[0] = new Person("Anton");
         array[1] = new Trainer();
         array[2] = new Trainee();
-    }
-
-    public void pakLaatste(List<?> list) {
-        // list.add(new Object());
     }
 }

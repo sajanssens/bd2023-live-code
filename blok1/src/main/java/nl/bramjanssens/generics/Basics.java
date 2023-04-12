@@ -1,12 +1,11 @@
 package nl.bramjanssens.generics;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static nl.bramjanssens.generics.Util.verwerkSafe;
-import static nl.bramjanssens.generics.Util.verwerkSafe2;
+import static nl.bramjanssens.generics.Util.verwerkSafeContravariant;
 import static nl.bramjanssens.generics.Util.verwerkSafeCovariant;
+import static nl.bramjanssens.generics.Util.verwerkSafeInvariant;
 import static nl.bramjanssens.generics.Util.verwerkUnsafe;
 import static nl.bramjanssens.generics.Util.verwerkUnsafeArray;
 
@@ -14,7 +13,7 @@ public class Basics {
 
     // Generic types = Generics
     public static void main(String[] args) {
-        // List<Person> personenUnsafe = new ArrayList<>();
+        // Using generics:
         List personenUnsafe = new ArrayList();
         personenUnsafe.add(new Person("Bram"));
         personenUnsafe.add(new Person("Leon"));
@@ -28,41 +27,44 @@ public class Basics {
         // personenSafe.add("Corne"); // NOK
 
         verwerkUnsafe(personenSafe);
-        verwerkSafe(personenSafe);
+        verwerkSafeInvariant(personenSafe);
 
-        // type argument
-        Box<Integer> bi = new Box<>(42);
-        Integer contents = bi.getContents();
+        // Creating (and using) generic classes:
+        Box<Integer> bi = new Box<>(42); //   Integer is a type argument
+        Integer i = bi.getContents();
 
         Box<String> bs = new Box<>("42");
-        String contents2 = bs.getContents();
+        String s = bs.getContents();
+
+        // Super/subtypes and generics: ----------
+
+        List<Object> objects = new ArrayList<>();
+        objects.add(new Person("Bram"));
+        objects.add(new Person("Leon"));
+        objects.add("Corne");
 
         List<Person> persons = new ArrayList<>();
         persons.add(new Person());
         persons.add(new Trainee());
         persons.add(new Trainer());
 
-        List<?> lijst = new ArrayList<>();
-        verwerkSafe2(lijst);
-
         List<Trainee> javaKlasXII = new ArrayList<>();
         // javaKlasXII.add(new Person());
         javaKlasXII.add(new Trainee());
         // javaKlasXII.add(new Trainer());
 
-        verwerkSafe(persons);
-        // verwerkSafe(javaKlasXII);
+        // what types can I pass to methods?
 
+        verwerkSafeInvariant(persons);
+        // verwerkSafeInvariant(javaKlasXII);
 
-        verwerkSafeCovariant(javaKlasXII);
         verwerkSafeCovariant(persons);
+        verwerkSafeCovariant(javaKlasXII);
+
+        verwerkSafeContravariant(objects);
+        verwerkSafeContravariant(persons);
+        // verwerkSafeContravariant(javaKlasXII);
 
         verwerkUnsafeArray(new Trainee[10]);
-
-        // Collections.sort(javaKlasXII);
-
-
     }
-
-
 }
