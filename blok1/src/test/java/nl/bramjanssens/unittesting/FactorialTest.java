@@ -8,36 +8,36 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class FactorialTest {
 
     @Test
-    void whenFaculty0ThenResultIs1() {
+    void whenFactorial0ThenResultIs1() {
         Factorial sut = new Factorial();
         long result = sut.fac(0);
         assertEquals(1, result);
     }
 
     @Test
-    void whenFaculty1ThenResultIs1() {
+    void whenFactorial1ThenResultIs1() {
         Factorial sut = new Factorial();
         long result = sut.fac(1);
         assertEquals(1, result);
     }
 
     @Test
-    void whenFaculty2ThenResultIs2() {
+    void whenFactorial2ThenResultIs2() {
         Factorial sut = new Factorial();
         long result = sut.fac(2);
         assertEquals(2, result);
     }
 
     @Test
-    void whenFacultyMinus1ThenResultIs1() {
+    void whenFactorialMinus1ThenResultIs1() {
         Factorial sut = new Factorial();
         assertThrows(IllegalArgumentException.class, () -> sut.fac(-1));
     }
 
     @Test
-    void whenFacultyNThenResultIsNFaculty() {
+    void whenFactorialWithSmallNThenResultIsNFactorial() {
         Factorial sut = new Factorial();
-        long result = sut.fac(2);
-        assertEquals(2, result);
+        long result = sut.fac(10);
+        assertEquals(3_628_800, result);
     }
 }

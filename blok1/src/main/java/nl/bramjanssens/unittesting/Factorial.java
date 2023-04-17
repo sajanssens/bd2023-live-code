@@ -2,8 +2,9 @@ package nl.bramjanssens.unittesting;
 
 public class Factorial {
 
-    public long fac(int i) {
-        if (i < 0) throw new IllegalArgumentException();
-        return i <= 1 ? 1 : 2;
+    public long fac(int n) {
+        if (n < 0) throw new IllegalArgumentException();
+
+        return n == 0 ? 1 : n * fac(n - 1);
     }
 }
