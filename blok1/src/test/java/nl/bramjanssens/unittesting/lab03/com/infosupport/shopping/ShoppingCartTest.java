@@ -1,11 +1,11 @@
 package nl.bramjanssens.unittesting.lab03.com.infosupport.shopping;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShoppingCartTest {
 
@@ -60,4 +60,45 @@ public class ShoppingCartTest {
         assertEquals(expectedAmount, sut.getOrders().get(expectedItem));
     }
 
+    @Test
+    public void checkout_callsUserRepository() {
+        // given
+        FakeUserRepository userRepository = new FakeUserRepository();
+        // FakeBankingService bankingService = new FakeBankingService();
+        var sut = new ShoppingCart("FRANK", userRepository, null);
+        sut.add(playstation, 1);
+        sut.add(xbox, 4);
+
+        // when
+        sut.checkOut();
+
+        // then
+        assertTrue(userRepository.verify());
+
+        // assertEquals(1, userRepository.getPayments().size());
+        //
+        // FakeUserRepository.Payment payment = userRepository.getPayments().get(0);
+        // assertEquals("FRANK", payment.user());
+        // assertEquals(valueOf(1199.99), payment.amount());
+    }
+
+    @Test
+    public void checkout_sufficientBalance_addsToPaymentHistory() {
+        // given
+        FakeUserRepository userRepository = new FakeUserRepository();
+        FakeBankingService bankingService = new FakeBankingService();
+        var sut = new ShoppingCart("FRANK", userRepository, bankingService);
+        sut.add(playstation, 1);
+        sut.add(xbox, 4);
+
+        // when
+        sut.checkOut();
+
+        // then
+        // assertEquals(1, userRepository.getPayments().size());
+
+        // FakeUserRepository.Payment payment = userRepository.getPayments().get(0);
+        // assertEquals("FRANK", payment.user());
+        // assertEquals(valueOf(1199.99), payment.amount());
+    }
 }

@@ -1,13 +1,32 @@
 package nl.bramjanssens.unittesting.lab03.com.infosupport.shopping;
 
+import nl.bramjanssens.unittesting.lab03.com.infosupport.shopping.repository.UserRepository;
+import nl.bramjanssens.unittesting.lab03.com.infosupport.shopping.service.BankingService;
+
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingCart {
+
+    private UserRepository userRepository;
+    private BankingService bankingService;
+
     private Map<Product, Integer> orders = new HashMap<>();
     private String owner;
+
+    public ShoppingCart(String username) {
+        owner = username;
+    }
+
+    public ShoppingCart(String username, UserRepository userRepository, BankingService bankingService) {
+        owner = username;
+        orders = new HashMap<>();
+
+        this.userRepository = userRepository;
+        this.bankingService = bankingService;
+    }
 
     public String getOwner() {
         return owner;
@@ -16,11 +35,6 @@ public class ShoppingCart {
     public Map<Product, Integer> getOrders() {
         return Collections.unmodifiableMap(orders);
     }
-
-    public ShoppingCart(String username) {
-        owner = username;
-    }
-
 
     /**
      * Add a new item to this cart.
@@ -47,6 +61,11 @@ public class ShoppingCart {
     }
 
     public void checkOut() {
-        // TODO: Implement
+        User user = userRepository.getUser(owner);
+        // BigDecimal balance = bankingService.getBalance(user.accountNumber());
+        // if (balance.floatValue() >= getTotal().floatValue()) {
+        // bankingService.makePayment(user.accountNumber(), getTotal());
+        userRepository.addPaymentHistory(user.name(), getTotal());
+        // }
     }
 }

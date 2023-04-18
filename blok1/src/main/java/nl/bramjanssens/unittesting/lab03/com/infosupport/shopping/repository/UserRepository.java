@@ -1,7 +1,8 @@
 package nl.bramjanssens.unittesting.lab03.com.infosupport.shopping.repository;
 
+import nl.bramjanssens.unittesting.lab03.com.infosupport.shopping.User;
+
 import java.math.BigDecimal;
-import com.infosupport.shopping.User;
 
 public interface UserRepository {
     User getUser(String username);
