@@ -2,15 +2,26 @@ package nl.bramjanssens.unittesting.faking.shopping;
 
 public class ShoppingCart {
 
-    public boolean checkout(int userId) {
-        RealUserDao dao = new RealUserDao();
+    // field injection (with e.g. @Inject and DI-framework)
+    private UserDao userDao;
 
-        User user = dao.getUser(userId);
+    // constructor injection
+    public ShoppingCart(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public boolean checkout(int userId) {
+        User user = userDao.getUser(userId);
 
         if (user.name().startsWith("$")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    // setter injection
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

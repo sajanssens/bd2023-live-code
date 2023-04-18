@@ -1,6 +1,6 @@
 package nl.bramjanssens.unittesting.faking.shopping;
 
-public class RealUserDao {
+public class RealUserDao implements UserDao {
 
     public User getUser(int userId) {
         // TODO: get from database...
