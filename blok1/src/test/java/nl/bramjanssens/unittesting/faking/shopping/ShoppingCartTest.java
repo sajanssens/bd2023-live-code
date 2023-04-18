@@ -9,15 +9,15 @@ class ShoppingCartTest {
     @Test
     void whenCheckoutOnExistingUserThenResultIsTrue() {
         // given
-        var target = new ShoppingCart(new FakeUserDao());
+        FakeUserDao userDao = new FakeUserDao();
+        var target = new ShoppingCart(userDao);
 
         // when
         boolean actual = target.checkout(42);
 
         // then
         assertTrue(actual);
-
         // verify that userDao.getUser is called?
-
+        assertTrue(userDao.verify());
     }
 }

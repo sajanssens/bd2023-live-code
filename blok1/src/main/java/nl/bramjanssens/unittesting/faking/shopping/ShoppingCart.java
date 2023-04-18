@@ -11,12 +11,16 @@ public class ShoppingCart {
     }
 
     public boolean checkout(int userId) {
-        User user = userDao.getUser(userId);
+        try {
+            User user = userDao.getUser(userId);
 
-        if (user.name().startsWith("$")) {
-            return true;
-        } else {
-            return false;
+            if (user.name().startsWith("$")) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
     }
 
