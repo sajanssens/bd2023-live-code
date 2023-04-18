@@ -3,7 +3,7 @@ package nl.bramjanssens.unittesting.faking.shopping;
 public class ShoppingCart {
 
     // field injection (with e.g. @Inject and DI-framework)
-    private UserDao userDao;
+    private final UserDao userDao;
 
     // constructor injection
     public ShoppingCart(UserDao userDao) {
@@ -22,10 +22,5 @@ public class ShoppingCart {
         } catch (IllegalArgumentException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    // setter injection
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
     }
 }
