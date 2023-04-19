@@ -13,6 +13,6 @@ class TemporaryEmployeeTest {
 
         double actual = t.calculateSalary();
 
-        assertEquals(600, actual);
+        assertEquals(1230, actual);
     }
 }

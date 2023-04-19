@@ -32,7 +32,7 @@ class EmployeeTest {
         assertEquals(42, actual);
 
         double actualToo = p.geefHetUniverseleAntwoord();
-        assertEquals(43, actualToo);
+        assertEquals(42, actualToo);
     }
 
     @Test
