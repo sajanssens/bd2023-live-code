@@ -56,7 +56,21 @@
                     <outputFormats>
                         <format>HTML2</format>
                     </outputFormats>
+                    <targetClasses>
+                        <param>nl.bramjanssens.mutationtesting*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>nl.bramjanssens.mutationtesting*</param>
+                    </targetTests>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
