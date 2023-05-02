@@ -3,20 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>nl.belastingdienst</groupId>
-        <artifactId>bd2023-live-code</artifactId>
+        <artifactId>blok2</artifactId>
         <version>1.0</version>
     </parent>
 
+    <artifactId>jdbc</artifactId>
 
-    <artifactId>blok2</artifactId>
+    <dependencies>
+        <!-- 1 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+    </dependencies>
 
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>jdbc</module>
-    </modules>
 
 </project>
