@@ -1,6 +1,5 @@
 package nl.bramjanssens;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +21,4 @@ public class Person {
 
     // @Basic
     private int age;
-
 }
