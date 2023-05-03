@@ -1,7 +1,9 @@
 package nl.bramjanssens;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -38,6 +40,22 @@ public class JdbcDemo {
                 }
                 System.out.println(sj);
             }
+
+            String name = "'Bram'; DROP DATABASE; --";
+            statement.executeQuery("SELECT * from person where name = " + name);
+
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT * from person where name LIKE ? AND id = ?");
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, 42);
+
+            DatabaseMetaData metaData1 = connection.getMetaData();
+
+            connection.setAutoCommit(false);
+            // doe je ding
+            connection.commit(); // of
+            connection.rollback();
+
         }
 
         // 2
