@@ -10,12 +10,12 @@ import org.jboss.weld.environment.se.Weld;
 @Singleton
 public class JPADemo {
 
-    @Inject
+    @Inject // CDI = Contexts and Dependency Injection
     private PersonDao dao;
 
     public static void main(String[] args) {
-        try (SeContainer container = Weld.newInstance().initialize()) {
-            JPADemo app = container.select(JPADemo.class).get();
+        try (SeContainer ballenbakMetDependencyInstanties = Weld.newInstance().initialize()) {
+            JPADemo app = ballenbakMetDependencyInstanties.select(JPADemo.class).get();
             app.run();
         }
     }

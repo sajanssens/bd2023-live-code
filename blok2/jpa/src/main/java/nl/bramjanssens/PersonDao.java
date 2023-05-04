@@ -1,16 +1,18 @@
 package nl.bramjanssens;
 
-import jakarta.inject.Singleton;
+import jakarta.enterprise.context.Dependent;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-@Singleton
+@Dependent
 public class PersonDao {
 
+    // @PersistenceContext when deployed in a JEE container
     // INJECT?
     private final EntityManager em;
 
+    // Application managed EntityManager
     public PersonDao() {
         this.em = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
     }
