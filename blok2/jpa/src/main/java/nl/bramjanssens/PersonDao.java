@@ -1,20 +1,32 @@
 package nl.bramjanssens;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-
-import java.sql.SQLException;
+import lombok.extern.slf4j.Slf4j;
 
 @Dependent
+@Slf4j
 public class PersonDao {
 
-    // @PersistenceContext when deployed in a JEE container
+    // @PersistenceContext // when deployed in a JEE container
     @Inject
-    private EntityManager em;
+    private EntityManager em; // Application managed EntityManager
 
-    // Application managed EntityManager
+    @PostConstruct
+    void post() {
+        log.info("------------------------ PostConstruct" + this);
+    }
+
+    @PreDestroy
+    public void close() {
+        log.info("------------------------ PreDestroy" + this);
+        em.close();
+    }
+
     public void insert(Person p) {
         // Application managed transaction
         EntityTransaction transaction = em.getTransaction();
@@ -32,7 +44,5 @@ public class PersonDao {
         return em.find(Person.class, id);
     }
 
-    public void close() {
-        em.close();
-    }
+    public EntityManager getEm() { return em; }
 }
