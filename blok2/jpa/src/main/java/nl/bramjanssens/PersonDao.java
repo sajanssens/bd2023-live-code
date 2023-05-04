@@ -11,8 +11,12 @@ import java.sql.SQLException;
 public class PersonDao {
 
     // @PersistenceContext when deployed in a JEE container
-    @Inject
     private EntityManager em;
+
+    @Inject
+    public PersonDao(EntityManager em) {
+        this.em = em;
+    }
 
     // Application managed EntityManager
     public void insert(Person p) {
