@@ -48,4 +48,12 @@ class PersonDaoTCIT {
         Person select = sut.select(1);
         assertNotNull(select);
     }
+
+    @Test
+    void whenPersonIsPutIntoTeamThenTheyArePersisted() {
+        Team psv = Team.builder().name("PSV").build();
+        Person asjer = Person.builder().name("Asjer").mijnVoetbalteam(psv).build();
+
+        sut.insert(asjer);
+    }
 }
