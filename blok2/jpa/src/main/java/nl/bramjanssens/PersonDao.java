@@ -16,17 +16,6 @@ public class PersonDao {
     @Inject
     private EntityManager em; // Application managed EntityManager
 
-    @PostConstruct
-    void post() {
-        log.info("------------------------ PostConstruct" + this);
-    }
-
-    @PreDestroy
-    public void close() {
-        log.info("------------------------ PreDestroy" + this);
-        em.close();
-    }
-
     public void insert(Person p) {
         // Application managed transaction
         EntityTransaction transaction = em.getTransaction();
@@ -45,4 +34,15 @@ public class PersonDao {
     }
 
     public EntityManager getEm() { return em; }
+
+    @PostConstruct
+    void post() {
+        log.info("------------------------ PostConstruct" + this);
+    }
+
+    @PreDestroy
+    public void close() {
+        log.info("------------------------ PreDestroy" + this);
+        em.close();
+    }
 }
