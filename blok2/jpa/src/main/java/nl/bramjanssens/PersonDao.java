@@ -1,11 +1,14 @@
 package nl.bramjanssens;
 
+import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
+@Singleton
 public class PersonDao {
 
+    // INJECT?
     private final EntityManager em;
 
     public PersonDao() {

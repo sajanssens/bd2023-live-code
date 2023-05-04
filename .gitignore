@@ -1,3 +1,4 @@
 .idea
 target
 /logging/logging.iml
+/logs/error.log
