@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @EnableAlternatives(EntityManagerProducerAlt.class)
 class PersonDaoIT {
 
-    @Inject
-    private PersonDao target;
-
     @AfterEach
     public void teardown() {
         // If some tests have open transactions because of exceptions (like in testSaveDetachedEntityWithoutCatchAndRollback)
@@ -24,6 +21,9 @@ class PersonDaoIT {
             target.getEm().getTransaction().rollback();
         }
     }
+
+    @Inject
+    private PersonDao target;
 
     @Test
     void whenInsertValidPersonThenItIsInsertedInTheDatabase() {
