@@ -44,6 +44,15 @@
             <!--<version>3.1.2.Final</version>--><!--contains CDI2.0-->
             <version>5.0.1.Final</version> <!--contains CDI4.0-->
         </dependency>
+        <!--testing-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.jboss.weld</groupId>
             <artifactId>weld-junit5</artifactId>

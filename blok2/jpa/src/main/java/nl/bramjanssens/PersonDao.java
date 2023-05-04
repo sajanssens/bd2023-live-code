@@ -1,28 +1,31 @@
 package nl.bramjanssens;
 
 import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+
+import java.sql.SQLException;
 
 @Dependent
 public class PersonDao {
 
     // @PersistenceContext when deployed in a JEE container
-    // INJECT?
-    private final EntityManager em;
+    @Inject
+    private EntityManager em;
 
     // Application managed EntityManager
-    public PersonDao() {
-        this.em = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
-    }
-
     public void insert(Person p) {
         // Application managed transaction
         EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(p);  // INSERT INTO
-        transaction.commit();
+        try {
+            transaction.begin();
+            em.persist(p);  // INSERT INTO
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            // TODO
+        }
     }
 
     public Person select(int id) {
