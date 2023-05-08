@@ -24,7 +24,7 @@ public class Person {
     // @Basic
     private String name;
 
-    @Basic
+    // @Basic
     private int age;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

@@ -13,9 +13,6 @@ public class JPADemo {
     @Inject // CDI = Contexts and Dependency Injection
     private PersonDao dao;
 
-    @Inject
-    private OtherService s;
-
     public static void main(String[] args) {
         try (SeContainer ballenbakMetDependencyInstanties = Weld.newInstance().initialize()) {
             JPADemo app = ballenbakMetDependencyInstanties.select(JPADemo.class).get();
@@ -30,9 +27,6 @@ public class JPADemo {
         Person person = dao.select(1);
         log.info(person.toString());
         dao.close();
-
-        // ...
-        s.show();
 
     }
 }
