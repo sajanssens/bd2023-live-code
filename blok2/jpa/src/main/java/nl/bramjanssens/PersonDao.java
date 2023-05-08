@@ -24,7 +24,7 @@ public class PersonDao {
     }
 
     // Application managed EntityManager
-    public void insert(Person p) {
+    public void create(Person p) {
         // Application managed transaction
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -37,7 +37,7 @@ public class PersonDao {
         }
     }
 
-    public Person select(int id) {
+    public Person read(int id) {
         return em.find(Person.class, id);
     }
 

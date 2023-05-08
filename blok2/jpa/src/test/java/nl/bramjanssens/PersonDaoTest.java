@@ -35,7 +35,7 @@ class PersonDaoTest {
         doNothing().when(emMock).persist(any(Person.class));
 
         // when
-        target.insert(new Person());
+        target.create(new Person());
 
         // then
         verify(emMock).persist(any(Person.class));
@@ -50,7 +50,7 @@ class PersonDaoTest {
         doThrow(EntityExistsException.class).when(emMock).persist(any(Person.class));
 
         // when
-        target.insert(new Person());
+        target.create(new Person());
 
         // then
         verify(emMock).persist(any(Person.class));

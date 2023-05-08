@@ -38,10 +38,10 @@ class PersonDaoIT {
         Person bram = Person.builder().name("Bram").build();
 
         // when
-        target.insert(bram);
+        target.create(bram);
 
         // then
-        Person select = target.select(1);
+        Person select = target.read(1);
         assertNotNull(select);
     }
 
@@ -54,9 +54,9 @@ class PersonDaoIT {
         Person bram3 = Person.builder().name("Bram3").build();
 
         // when
-        target.insert(bram);
-        target.insert(bram2);
-        target.insert(bram3);
+        target.create(bram);
+        target.create(bram2);
+        target.create(bram3);
 
         // then
         int finalSize = target.findAll().size();

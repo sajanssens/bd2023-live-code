@@ -42,10 +42,10 @@ class PersonDaoTCIT {
         Person bram = Person.builder().name("Bram").build();
 
         // when
-        sut.insert(bram);
+        sut.create(bram);
 
         // then
-        Person select = sut.select(1);
+        Person select = sut.read(1);
         assertNotNull(select);
     }
 
@@ -54,6 +54,6 @@ class PersonDaoTCIT {
         Team psv = Team.builder().name("PSV").build();
         Person asjer = Person.builder().name("Asjer").mijnVoetbalteam(psv).build();
 
-        sut.insert(asjer);
+        sut.create(asjer);
     }
 }

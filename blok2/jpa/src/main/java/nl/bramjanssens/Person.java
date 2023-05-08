@@ -1,6 +1,5 @@
 package nl.bramjanssens;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,5 +27,13 @@ public class Person {
     private int age;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Team mijnVoetbalteam;
+    private Team mijnTeam;
+
+    @ManyToOne
+    private Department afdelingWaarIkWerk;
+
+    public void setAfdelingWaarIkWerk(Department afdelingWaarIkWerk) {
+        this.afdelingWaarIkWerk = afdelingWaarIkWerk;
+        afdelingWaarIkWerk.getEmployees().add(this);
+    }
 }
