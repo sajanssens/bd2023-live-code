@@ -52,7 +52,7 @@ class PersonDaoTCIT {
     @Test
     void whenPersonIsPutIntoTeamThenTheyArePersisted() {
         Team psv = Team.builder().name("PSV").build();
-        Person asjer = Person.builder().name("Asjer").mijnVoetbalteam(psv).build();
+        Person asjer = Person.builder().name("Asjer").mijnTeam(psv).build();
 
         sut.create(asjer);
     }

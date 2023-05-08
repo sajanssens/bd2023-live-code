@@ -1,6 +1,7 @@
 package nl.bramjanssens;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 
 @Data @NoArgsConstructor @Builder @AllArgsConstructor // lombok
 @Entity
@@ -31,6 +34,9 @@ public class Person {
 
     @ManyToOne
     private Department afdelingWaarIkWerk;
+
+    // @ElementCollection @Builder.Default
+    // private ArrayList<Rol> rollen = new ArrayList<>();
 
     public void setAfdelingWaarIkWerk(Department afdelingWaarIkWerk) {
         this.afdelingWaarIkWerk = afdelingWaarIkWerk;

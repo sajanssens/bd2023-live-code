@@ -6,8 +6,6 @@ import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.weld.environment.se.Weld;
 
-import java.util.List;
-
 @Slf4j
 @Singleton
 public class JPADemo {
@@ -41,17 +39,17 @@ public class JPADemo {
         Person cornéSatriani = Person.builder().name("Corné Satriani").age(32).build();
         Person bramPetrucci = Person.builder().name("Bram Petrucci").age(43).build();
         Person leonVai = Person.builder().name("Leon Vai").age(31).build();
-        Team g3 = Team.builder().name("G3 is the best!").build();
-        cornéSatriani.setMijnTeam(g3);
-        bramPetrucci.setMijnTeam(g3);
-        leonVai.setMijnTeam(g3);
+        // Team g3 = Team.builder().name("G3 is the best!").build();
+        // cornéSatriani.setMijnTeam(g3);
+        // bramPetrucci.setMijnTeam(g3);
+        // leonVai.setMijnTeam(g3);
         verbinding1.create(cornéSatriani);
-        verbinding1.create(bramPetrucci);
-        verbinding1.create(leonVai);
-        verbinding1.close();
+        // verbinding1.create(bramPetrucci);
+        // verbinding1.create(leonVai);
+        // verbinding1.close();
 
         // even later...
-        Person person = verbinding2.read(1);
+        /* Person person = verbinding2.read(1);
         log.info(person.toString());
         verbinding2.close();
 
@@ -81,5 +79,6 @@ public class JPADemo {
 
         List<Person> g31 = teamDao.findTeamMembersOf("G3 is the best!");
         g31.forEach(System.out::println);
+        */
     }
 }
