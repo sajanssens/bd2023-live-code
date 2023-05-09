@@ -18,6 +18,8 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Data @NoArgsConstructor @Builder @AllArgsConstructor // lombok
 @Entity
 @Table(name = "Afdeling")
@@ -29,9 +31,8 @@ public class Department {
     @Column(name = "afdelingsnaam")
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "afdelingWaarIkWerk")
-    @Builder.Default // voor lombok
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = MERGE, mappedBy = "afdelingWaarIkWerk")
+    // voor lombok:
+    @Builder.Default @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<Person> employees = new ArrayList<>();
 }

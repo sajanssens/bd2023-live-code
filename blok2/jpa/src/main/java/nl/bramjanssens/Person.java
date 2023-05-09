@@ -3,6 +3,7 @@ package nl.bramjanssens;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +34,7 @@ public class Person {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Team mijnTeam;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Department afdelingWaarIkWerk;
 
     @ElementCollection @Builder.Default
