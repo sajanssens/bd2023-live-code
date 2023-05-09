@@ -32,8 +32,8 @@ public class PersonDao {
             em.persist(p);  // INSERT INTO
             transaction.commit();
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             transaction.rollback();
-            // TODO
         }
     }
 

@@ -13,20 +13,20 @@ public class JPADemo {
     @Inject // CDI = Contexts and Dependency Injection
     private PersonDao verbinding1;
 
-    @Inject // CDI = Contexts and Dependency Injection
-    private PersonDao verbinding2;
-
-    @Inject // CDI = Contexts and Dependency Injection
-    private DepartmentDao departmentDao;
-
-    @Inject // CDI = Contexts and Dependency Injection
-    private DepartmentDao departmentDao2;
-
-    @Inject // CDI = Contexts and Dependency Injection
-    private DepartmentDao departmentDao3;
-
-    @Inject // CDI = Contexts and Dependency Injection
-    private TeamDao teamDao;
+    // @Inject // CDI = Contexts and Dependency Injection
+    // private PersonDao verbinding2;
+    //
+    // @Inject // CDI = Contexts and Dependency Injection
+    // private DepartmentDao departmentDao;
+    //
+    // @Inject // CDI = Contexts and Dependency Injection
+    // private DepartmentDao departmentDao2;
+    //
+    // @Inject // CDI = Contexts and Dependency Injection
+    // private DepartmentDao departmentDao3;
+    //
+    // @Inject // CDI = Contexts and Dependency Injection
+    // private TeamDao teamDao;
 
     public static void main(String[] args) {
         try (SeContainer ballenbakMetDependencyInstanties = Weld.newInstance().initialize()) {
@@ -39,6 +39,8 @@ public class JPADemo {
         Person cornéSatriani = Person.builder().name("Corné Satriani").age(32).build();
         Person bramPetrucci = Person.builder().name("Bram Petrucci").age(43).build();
         Person leonVai = Person.builder().name("Leon Vai").age(31).build();
+        cornéSatriani.getRollen().add(Rol.DEVELOPER);
+        cornéSatriani.getRollen().add(Rol.SCRUM_MASTER);
         // Team g3 = Team.builder().name("G3 is the best!").build();
         // cornéSatriani.setMijnTeam(g3);
         // bramPetrucci.setMijnTeam(g3);

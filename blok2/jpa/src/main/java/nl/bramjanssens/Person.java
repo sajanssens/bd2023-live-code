@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data @NoArgsConstructor @Builder @AllArgsConstructor // lombok
 @Entity
@@ -35,8 +36,8 @@ public class Person {
     @ManyToOne
     private Department afdelingWaarIkWerk;
 
-    // @ElementCollection @Builder.Default
-    // private ArrayList<Rol> rollen = new ArrayList<>();
+    @ElementCollection @Builder.Default
+    private List<Rol> rollen = new ArrayList<>();
 
     public void setAfdelingWaarIkWerk(Department afdelingWaarIkWerk) {
         this.afdelingWaarIkWerk = afdelingWaarIkWerk;
