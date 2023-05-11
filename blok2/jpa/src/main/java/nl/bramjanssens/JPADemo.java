@@ -39,50 +39,55 @@ public class JPADemo {
 
     private void run() {
         Person cornéSatriani = Person.builder().name("Corné Satriani").age(32).build();
-        Person bramPetrucci = Person.builder().name("Bram Petrucci").age(43).build();
-        Person leonVai = Person.builder().name("Leon Vai").age(31).build();
         cornéSatriani.getRollen().add(Rol.DEVELOPER);
         cornéSatriani.getRollen().add(Rol.SCRUM_MASTER);
-        // Team g3 = Team.builder().name("G3 is the best!").build();
-        // cornéSatriani.setMijnTeam(g3);
-        // bramPetrucci.setMijnTeam(g3);
-        // leonVai.setMijnTeam(g3);
+
+        Person bramPetrucci = Person.builder().name("Bram Petrucci").age(43).build();
+        Person leonVai = Person.builder().name("Leon Vai").age(31).build();
+
+        Team g3 = Team.builder().name("G3 is the best!").build();
+        cornéSatriani.setMijnTeam(g3);
+        bramPetrucci.setMijnTeam(g3);
+        leonVai.setMijnTeam(g3);
+
         verbinding1.create(cornéSatriani);
-        // verbinding1.create(bramPetrucci);
-        // verbinding1.create(leonVai);
-        // verbinding1.close();
+        verbinding1.create(bramPetrucci);
+        verbinding1.create(leonVai);
+        verbinding1.close();
 
         // even later...
         Person person = verbinding2.read(1);
         log.info(person.toString());
         verbinding2.close();
 
-        Department iv = Department.builder().name("IV").build();
-        departmentDao.create(iv);
+        String iv = "IV";
+        Department ivDep = Department.builder().name(iv).build();
+        departmentDao.create(ivDep);
 
-        iv.getEmployees().add(cornéSatriani);
-        iv.getEmployees().add(bramPetrucci);
-        iv.getEmployees().add(leonVai);
+        ivDep.getEmployees().add(cornéSatriani);
+        ivDep.getEmployees().add(bramPetrucci);
+        ivDep.getEmployees().add(leonVai);
 
-        cornéSatriani.setAfdelingWaarIkWerk(iv);
-        bramPetrucci.setAfdelingWaarIkWerk(iv);
-        leonVai.setAfdelingWaarIkWerk(iv);
+        cornéSatriani.setAfdelingWaarIkWerk(ivDep);
+        bramPetrucci.setAfdelingWaarIkWerk(ivDep);
+        leonVai.setAfdelingWaarIkWerk(ivDep);
 
-        departmentDao.update(iv);
+        departmentDao.update(ivDep);
         departmentDao.close();
 
         // even later...
-        Department read = departmentDao2.read(3); // entity is managed = HOT = in verbinding met de DB
-        departmentDao2.close(); // entities get detached == unmanaged = COLD = in !verbinding met de DB
-        for (Person employee : read.getEmployees()) {
-            log.info(employee.toString());
-        }
+        Department foundDep = departmentDao2.find(iv); // entity is managed = HOT  = in  verbinding met de DB
+        departmentDao2.close();       // entities get detached == unmanaged = COLD = in !verbinding met de DB
+        // Won't work because foundDep is detached:
+        // for (Person employee : foundDep.getEmployees()) {
+        //     log.info(employee.toString());
+        // }
 
-        List<Person> ivs = departmentDao3.getAllEmployees("IV");
+        // Instead use a query:
+        List<Person> ivs = departmentDao3.getAllEmployees(iv);
         ivs.forEach(System.out::println);
 
-        List<Person> g31 = teamDao.findTeamMembersOf("G3 is the best!");
-        g31.forEach(System.out::println);
-
+        List<Person> teamMembersOfG3 = teamDao.findTeamMembersOf("G3 is the best!");
+        teamMembersOfG3.forEach(System.out::println);
     }
 }

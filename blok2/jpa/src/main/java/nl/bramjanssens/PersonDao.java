@@ -11,16 +11,18 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+import static nl.bramjanssens.util.EntityManagerProducer.MySQL;
+
 @Dependent
 @Slf4j
 public class PersonDao {
 
     // @PersistenceContext // when deployed in a JEE container
-    private EntityManager em; // Application managed EntityManager
+    private final EntityManager em; // Application managed EntityManager
 
     @Inject
-    public PersonDao(EntityManager em) {
-        this.em = em;
+    public PersonDao() {
+        this.em = MySQL.connection().createEntityManager();
     }
 
     // Application managed EntityManager

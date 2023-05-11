@@ -1,16 +1,21 @@
-package nl.bramjanssens.util;
+package nl.bramjanssens.util
 
-import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Singleton;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
+import jakarta.inject.Singleton
+import jakarta.persistence.Persistence
 
+// Kotlin :-)
 @Singleton
-public class EntityManagerProducer {
+class EntityManagerProducer {
 
-    @Produces
-    public EntityManager em() {
-        return Persistence
-                .createEntityManagerFactory("MySQL").createEntityManager();
+    companion object MySQL {
+        private val entityManagerFactory = Persistence.createEntityManagerFactory("MySQL")
+
+        fun connection(): jakarta.persistence.EntityManagerFactory = entityManagerFactory
     }
+
+    // Java:
+    // @Produces
+    // public EntityManager emf() {
+    //     return Persistence.createEntityManagerFactory("MySQL");
+    // }
 }

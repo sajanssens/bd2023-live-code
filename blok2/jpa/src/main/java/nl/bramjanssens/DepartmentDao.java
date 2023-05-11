@@ -1,28 +1,25 @@
 package nl.bramjanssens;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.Dependent;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+import static nl.bramjanssens.util.EntityManagerProducer.MySQL;
+
 @Dependent
 @Slf4j
 public class DepartmentDao {
 
-    // @PersistenceContext // when deployed in a JEE container
-    private EntityManager em; // Application managed EntityManager
+    private final EntityManager em; // Application managed EntityManager
 
-    @Inject
-    public DepartmentDao(EntityManager em) {
-        this.em = em;
+    public DepartmentDao() {
+        this.em = MySQL.connection().createEntityManager();
     }
 
-    // Application managed EntityManager
     public void create(Department e) {
         // Application managed transaction
         EntityTransaction transaction = em.getTransaction();
@@ -32,7 +29,7 @@ public class DepartmentDao {
             transaction.commit();
         } catch (Exception ex) {
             transaction.rollback();
-            // TODO
+            log.error("Bah... :-( ", ex);
         }
     }
 
@@ -55,6 +52,12 @@ public class DepartmentDao {
         return em.createQuery("select e from Department e", Department.class).getResultList();
     }
 
+    public Department find(String depName) {
+        return em.createQuery("select e from Department e where e.name = :depName", Department.class)
+                .setParameter("depName", depName)
+                .getSingleResult();
+    }
+
     public void remove(long id) {
         Department select = em.find(Department.class, id);
         if (select != null) {
@@ -71,14 +74,7 @@ public class DepartmentDao {
         return merged;
     }
 
-    // --- technische zin:
-
-    public EntityManager getEm() { return em; }
-
-    @PostConstruct
-    void post() {
-        log.info("------------------------ PostConstruct" + this);
-    }
+    // --- technische (on)zin:
 
     @PreDestroy
     public void close() {
