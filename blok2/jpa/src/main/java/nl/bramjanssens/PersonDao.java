@@ -1,29 +1,15 @@
 package nl.bramjanssens;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.Dependent;
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-import static nl.bramjanssens.util.EntityManagerProducer.MySQL;
-
 @Dependent
 @Slf4j
-public class PersonDao {
-
-    // @PersistenceContext // when deployed in a JEE container
-    private final EntityManager em; // Application managed EntityManager
-
-    @Inject
-    public PersonDao() {
-        this.em = MySQL.connection().createEntityManager();
-    }
+public class PersonDao extends Dao {
 
     // Application managed EntityManager
     public void create(Person p) {
@@ -76,20 +62,5 @@ public class PersonDao {
         Person merged = em.merge(p);
         em.getTransaction().commit();
         return merged;
-    }
-
-    // --- technische zin:
-
-    public EntityManager getEm() { return em; }
-
-    @PostConstruct
-    void post() {
-        log.info("------------------------ PostConstruct" + this);
-    }
-
-    @PreDestroy
-    public void close() {
-        log.info("------------------------ PreDestroy" + this);
-        em.close();
     }
 }

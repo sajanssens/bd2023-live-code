@@ -7,6 +7,7 @@ import jakarta.persistence.Persistence
 @Singleton
 class EntityManagerProducer {
 
+    // Kotlin's static:
     companion object MySQL {
         private val entityManagerFactory = Persistence.createEntityManagerFactory("MySQL")
 
@@ -15,7 +16,7 @@ class EntityManagerProducer {
 
     // Java:
     // @Produces
-    // public EntityManager emf() {
+    // public static EntityManagerFactory emf() {
     //     return Persistence.createEntityManagerFactory("MySQL");
     // }
 }

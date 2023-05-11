@@ -85,9 +85,9 @@ public class JPADemo {
 
         // Instead use a query:
         List<Person> ivs = departmentDao3.getAllEmployees(iv);
-        ivs.forEach(System.out::println);
+        ivs.forEach(p -> log.info(p.toString()));
 
         List<Person> teamMembersOfG3 = teamDao.findTeamMembersOf("G3 is the best!");
-        teamMembersOfG3.forEach(System.out::println);
+        teamMembersOfG3.forEach(p -> log.info(p.toString()));
     }
 }

@@ -1,24 +1,14 @@
 package nl.bramjanssens;
 
-import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.Dependent;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-import static nl.bramjanssens.util.EntityManagerProducer.MySQL;
-
 @Dependent
 @Slf4j
-public class DepartmentDao {
-
-    private final EntityManager em; // Application managed EntityManager
-
-    public DepartmentDao() {
-        this.em = MySQL.connection().createEntityManager();
-    }
+public class DepartmentDao extends Dao {
 
     public void create(Department e) {
         // Application managed transaction
@@ -72,13 +62,5 @@ public class DepartmentDao {
         Department merged = em.merge(e);
         em.getTransaction().commit();
         return merged;
-    }
-
-    // --- technische (on)zin:
-
-    @PreDestroy
-    public void close() {
-        log.info("------------------------ PreDestroy" + this);
-        em.close();
     }
 }
