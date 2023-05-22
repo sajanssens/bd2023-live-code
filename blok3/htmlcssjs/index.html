@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello world!</title>
+        <style>
+            p {
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body style="color: rgba(30,255,14,0.57); background-color: dodgerblue"> <!--  open tag -->
+        <!-- html element with attributes-->
+        <div>Welkom!</div> <!-- division -->
+        <div>Hoi <span style="color: aqua">Bram.</span></div>
+        <p onclick="alert('Je mag niet klikken! Da\'s niet netjes...');">Alinea</p>
+        <form method="get">
+            <input type="radio" id="hot" name="bathtub" value="h">
+            <label for="hot">Hot</label>
+
+            <input type="radio" id="cold" name="bathtub" value="c">
+            <label for="cold">Cold</label>
+            <div>
+                <label for="business">Business</label>
+                <select name="business" id="business">
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                </select>
+            </div>
+            <button>OK</button>
+        </form>
+    </body> <!--close tag-->
+
+</html>
