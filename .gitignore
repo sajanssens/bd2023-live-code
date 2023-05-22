@@ -1,5 +1,4 @@
-.idea
-target
-/logging/logging.iml
-/logs/error.log
-/blok2/jpa/logs/error.log
+**/.idea
+**/target
+**/*.iml
+**/logs/
