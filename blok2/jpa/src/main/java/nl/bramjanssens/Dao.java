@@ -15,4 +15,8 @@ public abstract class Dao {
         // log.info("------------------------ PreDestroying " + this);
         em.close();
     }
+
+    public EntityManager getEm() {
+        return em;
+    }
 }

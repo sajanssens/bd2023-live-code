@@ -30,7 +30,7 @@ class PersonDaoTCIT {
         var emf = Persistence.createEntityManagerFactory("test-containers");
         var em = emf.createEntityManager();
         entityManagerForTest = emf.createEntityManager();
-        sut = new PersonDao(em);
+        sut = new PersonDao(/*em*/);
         person = Person.builder().name("Henk").age(12).build();
     }
 
