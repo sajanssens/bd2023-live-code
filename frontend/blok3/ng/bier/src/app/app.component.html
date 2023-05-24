@@ -1,3 +1,19 @@
 <h1>Hello world!</h1>
-<p>Title is: {{title}}</p>
+<button [attr.id]="buttonId" (click)="toggle()">Show/hide</button>
+<p [hidden]="isVisible">Title is: {{title}}</p>
+
+<hr/>
+
 <app-subtitle></app-subtitle>
+
+<hr/>
+
+<h3>Cars:</h3>
+<ul>
+  <li *ngFor="let car of cars" [class.expensive]="car.price > 15000">
+    {{car.make}} {{car.model}}
+  </li>
+</ul>
+
+<hr/>
+<app-two-way-data-binding></app-two-way-data-binding>
