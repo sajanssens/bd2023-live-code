@@ -1,4 +1,4 @@
-class Person {
+export class Person {
 
     // manually create a field:
     private _age: number;
