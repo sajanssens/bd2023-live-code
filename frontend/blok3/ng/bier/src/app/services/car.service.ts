@@ -1,23 +1,29 @@
 import {Injectable} from '@angular/core';
 import {Car} from "../components/model/Car";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  cars = [
-    {make: 'Opel', model: 'Astra', price: 29995},
-    {make: 'Porsche', model: '911', price: 145000},
-    {make: 'Fiat', model: 'Uno', price: 1800}
-  ] as Car[];
 
-  getAll(): Car[] {
-    return this.cars
+
+  constructor(private http: HttpClient) {
+
   }
 
-  get(i: number): Car {
-    return this.cars[i]
+  getAll(): Observable<Car[]> {
+    // this.http.get<Car[]>('http://localhost:3000/cars').subscribe(
+    //   (c) => console.log(c)
+    // )
+    return this.http.get<Car[]>('http://localhost:3000/cars')
   }
+
+  // get(i: number): Car {
+  //   // return this.cars[i]
+
+  // }
 
 }
