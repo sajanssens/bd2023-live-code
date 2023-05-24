@@ -10,12 +10,6 @@ export class AppComponent {
   isVisible = false;
   inputValue = 'tiep hier iets...'
 
-  cars = [
-    {make: 'Opel', model: 'Astra', price: 29995},
-    {make: 'Porsche', model: '911', price: 145000},
-    {make: 'Fiat', model: 'Uno', price: 1800}
-  ];
-
   buttonId = 'veryImportantButton'
 
   toggle() {

@@ -1,0 +1,6 @@
+<h3>Cars:</h3>
+<ul>
+  <li *ngFor="let car of cars()" [class.expensive]="car.price > 15000">
+    {{car.make}} {{car.model}}
+  </li>
+</ul>
