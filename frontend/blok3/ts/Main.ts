@@ -1,19 +1,40 @@
-import {Person} from "./Person";
-import {PipeTransform} from "./InterfaceDemo";
+import {AdDao} from "./classesandinterfaces/AdDao";
 
-let p2: Person = new Person(43, "")
+// let p2: Person = new Person(43, "")
+//
+// const concatPipe: PipeTransform = {
+//     transform(name: string, ...args: any[]): string {
+//         return [name, ...args].join(' ');
+//     },
+// };
+//
+// class CSVPipe implements PipeTransform {
+//     transform(value: any, ...args: any[]): any {
+//         return [value, ...args].join(',');
+//     }
+// }
+//
+// console.log(concatPipe.transform("Hallo", "ik", "ben"));
+// console.log(new CSVPipe().transform("Hallo", "ik", "ben"));
 
-const concatPipe: PipeTransform = {
-    transform(name: string, ...args: any[]): string {
-        return [name, ...args].join(' ');
-    },
-};
+// const ditIsEenObject = {}
 
-class CSVPipe implements PipeTransform {
-    transform(value: any, ...args: any[]): any {
-        return [value, ...args].join(',');
+
+const response = `{ 
+    "title": "Hitchhikers",
+    "price": 42, 
+    "user": {
+        "email": "arthur.dent@douglas-adams.co.uk",
+        "password": "928y9ghnfe89t"
     }
-}
+}`
 
-console.log(concatPipe.transform("Hallo", "ik", "ben"));
-console.log(new CSVPipe().transform("Hallo", "ik", "ben"));
+const ad = JSON.parse(response) as AdDto // is een object van type any
+const dao = new AdDao()
+
+dao.markAsSold(ad)
+console.log(ad);
+
+function markAsSold(ad: AdDto) {
+    ad.sold = true
+}
