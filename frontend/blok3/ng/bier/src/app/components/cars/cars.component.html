@@ -1,12 +1,26 @@
 <h3>Cars:</h3>
-<ul>
-  <li *ngFor="let car of (cars$ | async)" [class.expensive]="car.price > 15000">
+<!--<ul>
+  <li *ngFor="let car of cars$ | async" [class.expensive]="car.price > 15000">
     {{car.make}} {{car.model}}
   </li>
-</ul>
+</ul>-->
 
 <ul>
   <li *ngFor="let car of cars" [class.expensive]="car.price > 15000">
-    {{car.make}} {{car.model}}
+    <button class="btn btn-danger p-1 m-1" (click)="delete(car.id)">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+    {{car | prettyCarrify}} {{car.price | currency}}
   </li>
 </ul>
+
+<div *ngIf="message!==''">Foutmelding: {{message}}</div>
+<form (ngSubmit)="save()" novalidate>
+  <label for="make">Make:</label>
+  <input type="text" id="make" name="make" [(ngModel)]="make" >
+  <label for="model">model:</label>
+  <input type="text" id="model" name="model" [(ngModel)]="model" >
+  <label for="price">price:</label>
+  <input type="text" id="price" name="price" [(ngModel)]="price" >
+  <button>Add car</button>
+</form>

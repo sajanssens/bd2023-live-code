@@ -8,6 +8,7 @@ import {FormsModule} from "@angular/forms";
 import {TwoWayDataBindingComponent} from './components/two-way-data-binding/two-way-data-binding.component';
 import {CarsComponent} from './components/cars/cars.component';
 import {HttpClientModule} from "@angular/common/http";
+import { PrettyCarrifyPipe } from './components/pipes/pretty-carrify.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
     SubtitleComponent,
     TwoWayDataBindingComponent,
     CarsComponent,
+    PrettyCarrifyPipe,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
