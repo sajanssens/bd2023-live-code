@@ -1,43 +1,28 @@
 {
   "cars": [
     {
+      "id": 1,
       "make": "Opel",
       "model": "Astra",
       "price": 29995
     },
     {
+      "id": 2,
       "make": "Porsche",
       "model": "911",
       "price": 145000
     },
     {
+      "id": 3,
       "make": "Fiat",
       "model": "Uno",
       "price": 1800
     },
     {
-      "make": "Tesla",
-      "model": "Model X",
-      "price": 62000,
-      "id": 8
-    },
-    {
-      "make": "Tesla",
-      "model": "Model X",
-      "price": 62000,
-      "id": 9
-    },
-    {
       "make": "Bram",
       "model": "hitchhiker",
-      "price": "42",
-      "id": 10
-    },
-    {
-      "make": "Bram",
-      "model": "hitchhiker",
-      "price": "42",
-      "id": 11
+      "price": "439",
+      "id": 4
     }
   ]
 }

@@ -10,17 +10,17 @@
     <button class="btn btn-danger p-1 m-1" (click)="delete(car.id)">
       <i class="fa-solid fa-trash"></i>
     </button>
-    {{car | prettyCarrify}} {{car.price | currency}}
+    {{car | prettyCarrify}} = {{car.price | currency}}
   </li>
 </ul>
 
 <div *ngIf="message!==''">Foutmelding: {{message}}</div>
 <form (ngSubmit)="save()" novalidate>
   <label for="make">Make:</label>
-  <input type="text" id="make" name="make" [(ngModel)]="make" >
+  <input type="text" id="make" name="make" [(ngModel)]="carToAdd.make" class="form-control">
   <label for="model">model:</label>
-  <input type="text" id="model" name="model" [(ngModel)]="model" >
+  <input type="text" id="model" name="model" [(ngModel)]="carToAdd.model" class="form-control">
   <label for="price">price:</label>
-  <input type="text" id="price" name="price" [(ngModel)]="price" >
-  <button>Add car</button>
+  <input type="text" id="price" name="price" [(ngModel)]="carToAdd.price" class="form-control">
+  <button class="btn btn-success">Add car</button>
 </form>

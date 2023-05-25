@@ -9,32 +9,25 @@ import {Car} from "../model/Car";
   styleUrls: ['./cars.component.less']
 })
 export class CarsComponent implements OnInit, OnDestroy {
-
   cars$ = {} as Observable<Car[]>
   cars: Car[] = []
-  // carService: CarService
   message: string = ''
+
   private subscription: Subscription = {} as Subscription
-  make: string = '';
-  model: string = '';
-  price: number = 0.0
+  carToAdd: Car = {} as Car
 
   constructor(private carService: CarService) {
   }
 
   delete(id?: number) {
     this.carService.delete(id).subscribe(
-      // this.cars.find((c) => c.id === id)
+      () => this.cars = this.cars.filter(c => c.id !== id)
     )
   }
 
   save() {
-    let car: Car = {make: this.make, model: this.model, price: this.price}
-    this.carService.add(car).subscribe(
-      addedCar => {
-        console.log('Car added: ' + JSON.stringify(addedCar))
-        this.cars.push(addedCar)
-      }
+    this.carService.add(this.carToAdd).subscribe(
+      addedCar => this.cars.push(addedCar)
     );
   }
 
