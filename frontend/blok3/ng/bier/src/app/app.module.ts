@@ -9,6 +9,8 @@ import {TwoWayDataBindingComponent} from './components/two-way-data-binding/two-
 import {CarsComponent} from './components/cars/cars.component';
 import {HttpClientModule} from "@angular/common/http";
 import { PrettyCarrifyPipe } from './components/pipes/pretty-carrify.pipe';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { PrettyCarrifyPipe } from './components/pipes/pretty-carrify.pipe';
     TwoWayDataBindingComponent,
     CarsComponent,
     PrettyCarrifyPipe,
+    NavbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

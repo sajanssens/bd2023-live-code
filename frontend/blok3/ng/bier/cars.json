@@ -19,9 +19,9 @@
       "price": 1800
     },
     {
-      "make": "Bram",
-      "model": "hitchhiker",
-      "price": "439",
+      "make": "Skoda",
+      "model": "Fabia",
+      "price": 23000,
       "id": 4
     }
   ]

@@ -15,12 +15,18 @@
 </ul>
 
 <div *ngIf="message!==''">Foutmelding: {{message}}</div>
-<form (ngSubmit)="save()" novalidate>
-  <label for="make">Make:</label>
-  <input type="text" id="make" name="make" [(ngModel)]="carToAdd.make" class="form-control">
-  <label for="model">model:</label>
-  <input type="text" id="model" name="model" [(ngModel)]="carToAdd.model" class="form-control">
-  <label for="price">price:</label>
-  <input type="text" id="price" name="price" [(ngModel)]="carToAdd.price" class="form-control">
-  <button class="btn btn-success">Add car</button>
+<form (ngSubmit)="save(carForm)" #carForm="ngForm" class="card p-2 m-2" style="width: 18rem;" novalidate>
+  <div class="card-body">
+    <label [for]="createMake()">Make <span *ngIf="make.errors?.['required']">*</span></label>
+    <input type="text" #make="ngModel" required minlength="3"  id="make" name="make" [(ngModel)]="carToAdd.make"
+           class="form-control mb-2">
+
+    <label for="model">model <span *ngIf="model.errors?.['required']">*</span></label>
+    <input type="text" #model="ngModel" required id="model" name="model" [(ngModel)]="carToAdd.model" class="form-control  mb-2">
+
+    <label for="price">price <span *ngIf="price.errors?.['required']!==undefined">*</span></label>
+    <input type="number" #price="ngModel" id="price" name="price" [(ngModel)]="carToAdd.price" class="form-control  mb-2">
+
+    <button [disabled]="!carForm.valid" class="btn btn-success">Add car</button>
+  </div>
 </form>

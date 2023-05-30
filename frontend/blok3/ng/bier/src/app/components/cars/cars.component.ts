@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CarService} from "../../services/car.service";
 import {Observable, Subscription} from "rxjs";
 import {Car} from "../model/Car";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-cars',
@@ -25,10 +26,22 @@ export class CarsComponent implements OnInit, OnDestroy {
     )
   }
 
-  save() {
-    this.carService.add(this.carToAdd).subscribe(
-      addedCar => this.cars.push(addedCar)
-    );
+  save(ngForm: NgForm) {
+    if (ngForm.valid) {
+      console.log(ngForm.value);
+
+      this.carService.add(this.carToAdd).subscribe(
+        addedCar => this.cars.push(addedCar)
+      )
+      this.carToAdd = {} as Car
+      ngForm.reset()
+    } else {
+      this.message = "Er zitten fouten in het formulier..."
+    }
+  }
+
+
+  buttonEnabled() {
   }
 
   ngOnInit(): void {
@@ -38,5 +51,9 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
+  }
+
+  createMake(): string {
+    return "make"
   }
 }
