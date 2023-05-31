@@ -28,10 +28,9 @@ export class BeersComponent implements OnInit {
   }
 
   handleSearch(e: string) {
-    this.beerService.search(e)
+    if (typeof (e) == 'string') {
+      this.beerService.search(e)
+    }
   }
 
-  createPlaceholder(): string {
-    return "welk bier?";
-  }
 }

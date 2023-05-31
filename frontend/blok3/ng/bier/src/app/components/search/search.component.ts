@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {outputAst} from "@angular/compiler";
 
 @Component({
   selector: 'app-search',
@@ -11,9 +10,15 @@ export class SearchComponent {
   @Input() placeholder = "search terms..."
   @Output() search = new EventEmitter<string>()
 
-  searchterm: string = '';
+  input: string = '';
 
-  handleClick() {
-    this.search.emit(this.searchterm)
+  go() {
+    this.search.emit(this.input)
+  }
+
+  clearIfEmpty() {
+    if (this.input === '') {
+      this.search.emit(this.input)
+    }
   }
 }

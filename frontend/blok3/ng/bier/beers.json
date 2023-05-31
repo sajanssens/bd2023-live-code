@@ -13,7 +13,7 @@
       "price": 2.09
     },
     {
-      "type": "pils",
+      "type": "Pils",
       "make": "Grolsch",
       "price": 0.89,
       "id": 3
@@ -23,6 +23,12 @@
       "type": "Dubbel",
       "price": 2,
       "id": 5
+    },
+    {
+      "make": "Karmeliet",
+      "type": "Tripel",
+      "price": 2.12,
+      "id": 6
     }
   ]
 }
