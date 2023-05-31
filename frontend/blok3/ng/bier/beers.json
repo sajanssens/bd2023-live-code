@@ -17,6 +17,12 @@
       "make": "Grolsch",
       "price": 0.89,
       "id": 3
+    },
+    {
+      "make": "LaTrappe",
+      "type": "Dubbel",
+      "price": 2,
+      "id": 5
     }
   ]
 }

@@ -14,9 +14,7 @@ export class BeerDetailsComponent {
   }
 
   save() {
-    this.beerService.add(this.beer).subscribe(
-      addedCar => 1
-    )
+    this.beerService.add(this.beer)
   }
 
 

@@ -1,28 +1,42 @@
 import {Injectable} from '@angular/core';
 import {Beer} from "../components/model/Beer";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 
 @Injectable({providedIn: 'root'})
 export class BeerService {
 
+  private _beersAreUpdated$ = new Subject<Beer[]>()
+
+  get beersAreUpdated$(){
+    return this._beersAreUpdated$
+  }
+
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<Beer[]> {
-    return this.http.get<Beer[]>('http://localhost:3000/beers')
+  getAll(): void {
+    this.http.get<Beer[]>('http://localhost:3000/beers').subscribe(
+      (beersFromBackend) => this._beersAreUpdated$.next(beersFromBackend)
+    )
   }
 
-  add(c: Beer): Observable<Beer> {
-    return this.http.post<Beer>('http://localhost:3000/beers', c);
+  add(c: Beer): void {
+    this.http.post<Beer>('http://localhost:3000/beers', c).subscribe(
+      () => this.getAll()
+    )
   }
 
-  delete(id?: number): Observable<void> {
-    return this.http.delete<void>('http://localhost:3000/beers/' + id);
+  delete(id?: number): void {
+    this.http.delete<void>('http://localhost:3000/beers/' + id).subscribe(
+      () => this.getAll()
+    )
   }
 
-  search(searchterm: string): Observable<Beer[]> {
-    return this.http.get<Beer[]>('http://localhost:3000/beers?q=' + searchterm)
+  search(searchterm: string): void {
+    this.http.get<Beer[]>('http://localhost:3000/beers?q=' + searchterm).subscribe(
+      (beersFromBackend) => this._beersAreUpdated$.next(beersFromBackend)
+    )
   }
 }

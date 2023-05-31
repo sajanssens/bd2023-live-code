@@ -18,23 +18,20 @@ export class BeersComponent implements OnInit {
   constructor(private beerService: BeerService) {
   }
 
-  delete(id?: number) {
-    this.beerService.delete(id).subscribe(
-      // () => this.beers = this.beers.filter(c => c.id !== id)
-    )
-  }
-
   ngOnInit(): void {
-    this.beers$ = this.beerService.getAll()
+    this.beers$ = this.beerService.beersAreUpdated$;
+    this.beerService.getAll()
   }
 
-
-  createPlaceholder(): string {
-    return "welk bier?";
+  delete(id?: number) {
+    this.beerService.delete(id)
   }
 
   handleSearch(e: string) {
-    console.log("handleSearch " + e)
-    this.beers$ = this.beerService.search(e)
+    this.beerService.search(e)
+  }
+
+  createPlaceholder(): string {
+    return "welk bier?";
   }
 }
