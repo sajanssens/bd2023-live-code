@@ -1,0 +1,22 @@
+{
+  "beers": [
+    {
+      "id": 1,
+      "make": "Leffe",
+      "type": "Blond",
+      "price": 1.89
+    },
+    {
+      "id": 2,
+      "make": "Leffe",
+      "type": "Tripel",
+      "price": 2.09
+    },
+    {
+      "type": "pils",
+      "make": "Grolsch",
+      "price": 0.89,
+      "id": 3
+    }
+  ]
+}

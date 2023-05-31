@@ -6,21 +6,25 @@ import {AppComponent} from './app.component';
 import {SubtitleComponent} from './components/subtitle/subtitle.component';
 import {FormsModule} from "@angular/forms";
 import {TwoWayDataBindingComponent} from './components/two-way-data-binding/two-way-data-binding.component';
-import {CarsComponent} from './components/cars/cars.component';
+import {BeersComponent} from './components/beers/beers.component';
 import {HttpClientModule} from "@angular/common/http";
-import { PrettyCarrifyPipe } from './components/pipes/pretty-carrify.pipe';
+import { PrettyBeerPipe } from './components/pipes/pretty-beer.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { BeerDetailsComponent } from './components/beer-details/beer-details.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SubtitleComponent,
     TwoWayDataBindingComponent,
-    CarsComponent,
-    PrettyCarrifyPipe,
+    BeersComponent,
+    PrettyBeerPipe,
     NavbarComponent,
     HomeComponent,
+    BeerDetailsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

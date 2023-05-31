@@ -1,6 +1,6 @@
-export interface Car {
+export interface Beer {
   id?: number
   make: string
-  model: string
+  type: string
   price: number
 }

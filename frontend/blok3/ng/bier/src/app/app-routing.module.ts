@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {CarsComponent} from "./components/cars/cars.component";
+import {BeersComponent} from "./components/beers/beers.component";
 import {HomeComponent} from "./components/home/home.component";
 import {isLoggedInGuard} from "./guards/is-logged-in.guard";
 
@@ -8,7 +8,7 @@ import {isLoggedInGuard} from "./guards/is-logged-in.guard";
   imports: [RouterModule.forRoot([
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
-    {path: 'cars', component: CarsComponent, canActivate: [isLoggedInGuard]},
+    {path: 'beers', component: BeersComponent, canActivate: [isLoggedInGuard]},
   ])],
   exports: [RouterModule]
 })

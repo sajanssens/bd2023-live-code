@@ -1,0 +1,15 @@
+<form (ngSubmit)="save()" #beerForm="ngForm" class="card p-2 m-2" style="width: 18rem;" novalidate>
+  <div class="card-body">
+    <label for="make">Make <span *ngIf="make.errors?.['required']">*</span></label>
+    <input type="text" #make="ngModel" required minlength="3"  id="make" name="make" [(ngModel)]="beer.make"
+           class="form-control mb-2">
+
+    <label for="type">type <span *ngIf="model.errors?.['required']">*</span></label>
+    <input type="text" #model="ngModel" required id="type" name="type" [(ngModel)]="beer.type" class="form-control  mb-2">
+
+    <label for="price">price <span *ngIf="price.errors?.['required']!==undefined">*</span></label>
+    <input type="number" #price="ngModel" id="price" name="price" [(ngModel)]="beer.price" class="form-control  mb-2">
+
+    <button [disabled]="!beerForm.valid" class="btn btn-success">Add</button>
+  </div>
+</form>
