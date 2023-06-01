@@ -13,6 +13,7 @@
     <modules>
         <module>blok1</module>
         <module>blok2</module>
+        <module>blok4</module>
         <module>logging</module>
     </modules>
 
