@@ -36,4 +36,11 @@ export class BeerDetailsComponent {
   toggle() {
     this.show = !this.show;
   }
+
+  cancel() {
+    this.show = false;
+    if (this.editMode) {
+      this.router.navigate(['beers'])
+    }
+  }
 }

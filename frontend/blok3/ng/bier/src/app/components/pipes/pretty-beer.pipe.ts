@@ -7,7 +7,7 @@ import {Beer} from "../model/Beer";
 export class PrettyBeerPipe implements PipeTransform {
 
   transform(beer: Beer): string {
-    return `${beer.make} - ${beer.type}`;
+    return `${beer.make} ${beer.type}`;
   }
 
 }

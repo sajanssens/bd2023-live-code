@@ -27,8 +27,14 @@
     {
       "make": "Karmeliet",
       "type": "Tripel",
-      "price": 2.12,
+      "price": 1,
       "id": 6
+    },
+    {
+      "make": "Bram",
+      "type": "Dubbel",
+      "price": 1.09,
+      "id": 7
     }
   ]
 }

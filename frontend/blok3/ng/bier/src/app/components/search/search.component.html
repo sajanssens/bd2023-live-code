@@ -1,9 +1,11 @@
-<div class="input-group p-2">
-  <div class="form-outline">
-    <input (keydown.enter)="go()" (input)="clearIfEmpty()" type="search" name="searchterm" id="form1"
-           class="form-control my-2" [placeholder]="placeholder" [(ngModel)]="input">
+<div class="row p-2">
+  <div class="col-4">
+    <div class="input-group">
+      <input (keydown.enter)="go()" (input)="clearIfEmpty()" type="search" name="searchterm" id="form1"
+             class="form-control my-2" [placeholder]="placeholder" [(ngModel)]="input">
+      <button (click)="go()" type="submit" class="btn btn-sm btn-primary my-2">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
   </div>
-  <button (click)="go()" type="submit" class="btn btn-sm my-2 btn-primary">
-    <i class="fas fa-search"></i>
-  </button>
 </div>
