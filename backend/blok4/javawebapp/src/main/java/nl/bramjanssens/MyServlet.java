@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/hello")
+// @WebServlet("/hello") instead of mapping in web.xml
 public class MyServlet extends HttpServlet {
 
     @Override
