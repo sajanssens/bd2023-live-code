@@ -10,4 +10,11 @@ public class HelloWorldResource {
     public String hello() {
         return "HELLO!";
     }
+
+    // unreachable rest endpoint
+    @GET
+    public String helloJson() {
+        return "helloJson!";
+    }
+
 }
