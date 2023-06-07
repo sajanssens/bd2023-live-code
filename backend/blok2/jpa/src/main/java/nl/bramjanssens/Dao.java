@@ -2,13 +2,11 @@ package nl.bramjanssens;
 
 import jakarta.annotation.PreDestroy;
 import jakarta.persistence.EntityManager;
-
-import static nl.bramjanssens.util.EntityManagerProducer.MySQL;
+import nl.bramjanssens.util.MySql;
 
 public abstract class Dao {
 
-    // @PersistenceContext // when deployed in a JEE container
-    protected final EntityManager em = MySQL.connection().createEntityManager();
+    protected final EntityManager em = MySql.connection().createEntityManager();
 
     @PreDestroy
     public void close() {

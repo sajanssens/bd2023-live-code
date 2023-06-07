@@ -1,10 +1,10 @@
 package nl.belastingdienst.rest.domain;
 
-import java.util.UUID;
+import java.util.Random;
 
-public record Beer(String id, String name) {
+public record Beer(int id, String make, String type, double price) {
 
-    public Beer(String name) {
-        this(UUID.randomUUID().toString(), name);
+    public Beer(String make, String type, double price) {
+        this(new Random().nextInt(), make, type, price);
     }
 }
