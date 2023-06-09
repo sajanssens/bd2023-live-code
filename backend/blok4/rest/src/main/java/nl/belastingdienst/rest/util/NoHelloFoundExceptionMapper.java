@@ -5,7 +5,7 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 @Provider
-public class BadRequestExceptionMapper implements ExceptionMapper<NoHelloFoundException> {
+public class NoHelloFoundExceptionMapper implements ExceptionMapper<NoHelloFoundException> {
 
     // Als er ergens in mijn JAX-RS-app een NoHelloFoundException optreedt
     // vang ik hem hier af:
@@ -13,7 +13,7 @@ public class BadRequestExceptionMapper implements ExceptionMapper<NoHelloFoundEx
     public Response toResponse(NoHelloFoundException ex) {
         // dit is als het ware de catch(BadRequestException ex){
         return Response.status(403)
-                .entity("BadRequestExceptionMapper: " + ex.getMessage())
+                .entity("NoHelloFoundExceptionMapper: " + ex.getMessage())
                 .build();
         //}
     }
