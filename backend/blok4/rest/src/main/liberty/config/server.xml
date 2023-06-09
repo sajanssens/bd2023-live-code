@@ -11,6 +11,8 @@
                   httpPort="9080"
                   httpsPort="9443"/>
 
+    <basicRegistry id="basic" realm="BasicRealm"/>
+
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 

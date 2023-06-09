@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.belastingdienst.rest.util.Id;
 
-import java.util.Random;
-
-@XmlRootElement
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
+@XmlRootElement
 public class Beer {
 
-    private int id = new Random().nextInt();
+    private int id = Id.next();
     private String make;
     private String type;
     private double price;
