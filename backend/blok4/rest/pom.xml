@@ -44,14 +44,22 @@
                         <groupId>com.ibm.websphere.appserver.runtime</groupId>
                         <artifactId>wlp-jakartaee10</artifactId>
                         <version>23.0.0.5</version>
-                        <type>zip</type>
                         <!-- ... or OpenLiberty -->
-                        <!--
-                        <groupId>io.openliberty.beta</groupId>
+                        <!--<groupId>io.openliberty.beta</groupId>
                         <artifactId>openliberty-runtime</artifactId>
-                        <version>23.0.0.5</version>
-                        -->
+                        <version>23.0.0.5</version>-->
+                        <type>zip</type>
                     </runtimeArtifact>
+                    <copyDependencies>
+                        <dependencyGroup>
+                            <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>8.0.30</version>
+                            </dependency>
+                        </dependencyGroup>
+                    </copyDependencies>
                 </configuration>
             </plugin>
         </plugins>

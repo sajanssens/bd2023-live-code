@@ -10,10 +10,9 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import kotlin.NotImplementedError;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
-import nl.belastingdienst.rest.repositories.BeerRepo;
+import nl.belastingdienst.rest.repositories.BeerFakeRepo;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_XML;
@@ -27,7 +26,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_XML;
 public class BeerResource {
 
     @Inject
-    private BeerRepo repo;
+    private BeerFakeRepo repo;
 
     private int id;
 
@@ -41,32 +40,30 @@ public class BeerResource {
     @PUT// .../beers/<een-id>
     public Beer edit(BeerInput input) {
         Beer editedBeer = new Beer(id, input.make(), input.type(), input.price());
-        this.repo.getBeers().remove(this.repo.get(this.id));
-        this.repo.getBeers().add(editedBeer);
+        this.repo.getEmFake().remove(this.repo.get(this.id));
+        this.repo.getEmFake().add(editedBeer);
         return editedBeer;
     }
 
     @DELETE // .../beers/<een-id>
     public void delete() {
-        boolean removed = this.repo.getBeers().remove(this.repo.get(this.id));
+        boolean removed = this.repo.getEmFake().remove(this.repo.get(this.id));
         if (!removed) throw new BadRequestException();
     }
 
     @GET @Path("recipes") // .../beers/<een-id>/recipes
     public Beer getBeerRecipes() {
-        throw new NotImplementedError();
+        throw new RuntimeException("NotImplemented");
     }
 
     @GET @Path("recipes/{rid}") // .../beers/<een-id>/recipes/<een-rid>
     public Beer getBeerRecipe(@PathParam("rid") int rid) {
-        throw new NotImplementedError();
+        throw new RuntimeException("NotImplemented");
     }
 
     public BeerResource with(int id) {
         this.id = id;
         return this;
     }
-
-
 }
 
