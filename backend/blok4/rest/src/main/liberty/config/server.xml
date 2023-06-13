@@ -4,6 +4,7 @@
     <!-- Enable features -->
     <featureManager>
         <feature>jakartaee-10.0</feature>
+        <feature>mpOpenAPI-3.1</feature>
     </featureManager>
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
@@ -17,13 +18,25 @@
     <!-- Prevent NO_USER_REGISTRY error -->
     <basicRegistry id="basic" realm="dummyRealm"/>
 
+    <!--<cors
+            domain="/api"
+            allowedOrigins="http://localhost:4200"
+            allowedMethods="GET, DELETE, POST, PUT"
+            allowedHeaders="origin, content-type, accept, authorization, cache-control"
+            allowCredentials="true"
+            exposeHeaders="authorization"
+            maxAge="3600"/>-->
+
+    <!--FOR JPA:  ******************************************** -->
     <!-- MySQL for production -->
     <library id="MySQLLib">
         <fileset dir="${shared.resource.dir}/" includes="mysql*.jar"/>
     </library>
 
-    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
+    <dataSource id="DefaultDataSource" jndiName="jdbc/mySqlDatasource">
         <jdbcDriver libraryRef="MySQLLib"/>
-        <properties useSSL="false" serverName="localhost" portNumber="3306" databaseName="restdemo" user="root" password="root" serverTimezone="UTC"/>
+        <properties serverName="localhost" portNumber="3306" databaseName="restdemo" user="root" password="root" useSSL="false" serverTimezone="UTC"/>
     </dataSource>
+
+
 </server>

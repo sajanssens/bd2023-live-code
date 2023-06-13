@@ -10,16 +10,17 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.UriInfo;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
 import nl.belastingdienst.rest.repositories.BeerFakeRepo;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
-import static jakarta.ws.rs.core.MediaType.APPLICATION_XML;
 
 @Dependent // Deze is injecteerbaar (als discovery-mode=annotated).
 //            De levensduur van deze CDI-bean is hetzelfde (dependent) als de klasse waarin hij geïnjecteerd wordt.
-@Produces({APPLICATION_JSON, APPLICATION_XML}) // ask by using header `Accept: application/json` or `Accept: application/xml`
+@Produces({APPLICATION_JSON/*, APPLICATION_XML*/}) // ask by using header `Accept: application/json` or `Accept: application/xml`
 @Consumes(APPLICATION_JSON)
 // No @Path in a subresource!
 // This runs @ beers/{id}
@@ -33,21 +34,24 @@ public class BeerResource {
     public BeerResource() { /* for CDI */ }
 
     @GET// .../beers/<een-id>
-    public Beer get() {
-        return this.repo.get(this.id);
+    public Beer get(@Context UriInfo uri) {
+        Beer beer = this.repo.get(this.id);
+        beer.set_self(uri.getAbsolutePath().toString());
+        return beer;
     }
 
     @PUT// .../beers/<een-id>
-    public Beer edit(BeerInput input) {
-        Beer editedBeer = new Beer(id, input.make(), input.type(), input.price());
-        this.repo.getEmFake().remove(this.repo.get(this.id));
-        this.repo.getEmFake().add(editedBeer);
+    public Beer edit(BeerInput b) {
+        Beer editedBeer = Beer.of(id, b);
+
+        this.repo.getEm().remove(this.repo.get(this.id));
+        this.repo.getEm().add(editedBeer);
         return editedBeer;
     }
 
     @DELETE // .../beers/<een-id>
     public void delete() {
-        boolean removed = this.repo.getEmFake().remove(this.repo.get(this.id));
+        boolean removed = this.repo.getEm().remove(this.repo.get(this.id));
         if (!removed) throw new BadRequestException();
     }
 

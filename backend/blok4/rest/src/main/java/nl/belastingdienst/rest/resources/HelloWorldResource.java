@@ -10,7 +10,7 @@ public class HelloWorldResource {
 
     @GET
     public Response hello() {
-        boolean notFound = true;
+        boolean notFound = false    ;
         if (notFound)
             return Response
                     .status(403)

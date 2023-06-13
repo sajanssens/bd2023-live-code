@@ -2,10 +2,11 @@ package nl.belastingdienst.rest.util;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Id {
+public class LastId {
 
     static AtomicInteger lastId = new AtomicInteger(0);
     // static int lastId = 0;
+
     // static ReentrantLock plasketting = new ReentrantLock();
 
     public static int next() {

@@ -8,44 +8,44 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.GenericEntity;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
 import nl.belastingdienst.rest.repositories.BeerFakeRepo;
+import nl.belastingdienst.rest.repositories.BeerJPARepo;
 
 import java.util.List;
-import java.util.Map;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
-import static java.util.Collections.singletonMap;
 
-@Path("beers")
+@Path("beers") // @RequestScoped
 public class BeersResource {
 
     @Inject
     private BeerFakeRepo repo;
 
-    // @Inject
-    // private BeerJPARepo jpaRepo;
+    @Inject
+    private BeerJPARepo jpaRepo;
 
     @Inject
     private BeerResource beerResource;
 
     @GET  // .../beers?q=leffe
     @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
-    public Map<String, List<Beer>> search(@QueryParam("q") String q) {
+    public List<Beer> search(@QueryParam("q") String q) {
         return q != null ?
-                singletonMap("beers", this.repo.getEmFake().stream()
+                this.repo.getEm().stream()
                         .filter(s -> s.getMake().toLowerCase().contains(q.toLowerCase()))
                         .filter(s -> s.getType().toLowerCase().contains(q.toLowerCase()))
-                        .toList()) :
-                singletonMap("beers", this.repo.getEmFake());
+                        .toList() :
+                this.repo.getEm();
     }
 
     @POST // .../beers
     @Produces({APPLICATION_JSON}) @Consumes(APPLICATION_JSON)
     public Beer add(BeerInput input) {
         Beer newBeer = new Beer(input.make(), input.type(), input.price());
-        this.repo.getEmFake().add(newBeer);
+        this.repo.getEm().add(newBeer);
         return newBeer;
     }
 

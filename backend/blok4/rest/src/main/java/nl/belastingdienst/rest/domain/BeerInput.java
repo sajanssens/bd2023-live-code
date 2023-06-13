@@ -1,3 +1,3 @@
 package nl.belastingdienst.rest.domain;
 
-public record BeerInput(String make, String type, Double price) { }
+public record BeerInput(int id, String make, String type, Double price) { }

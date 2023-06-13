@@ -3,25 +3,33 @@ package nl.belastingdienst.rest.domain;
 import jakarta.persistence.Entity;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import nl.belastingdienst.rest.util.Id;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@SuperBuilder @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @ToString @EqualsAndHashCode(callSuper = true)
 @XmlRootElement
 @Entity
-public class Beer {
+public class Beer extends AbstractEntity<Integer> {
 
-    @jakarta.persistence.Id
-    private int id = Id.next();
     private String make;
     private String type;
     private double price;
 
-    public Beer(String make, String type, double p) {
+    public Beer(int id, String make, String type, double p) {
         this.make = make;
         this.type = type;
         this.price = p;
+        this.id = id;
+    }
+
+    public static Beer of(int id, BeerInput b) {
+        return Beer.builder().id(id)
+                .make(b.make()).type(b.type()).price(b.price())
+                .build();
     }
 }

@@ -7,20 +7,21 @@ import {serverUrl} from "../../environments/environment";
 @Injectable({providedIn: 'root'})
 export class BeerService {
 
+  private url = `${serverUrl}/beers`;
   private _beersAreUpdated$ = new Subject<Beer[]>()
+
+  constructor(private http: HttpClient) {
+  }
 
   get beersAreUpdated$() {
     return this._beersAreUpdated$
   }
 
-  constructor(private http: HttpClient) {
-  }
-
-  private url = `${serverUrl}/beers`;
-
   getAll(): void {
     this.http.get<Beer[]>(this.url).subscribe(
-      (beersFromBackend) => this._beersAreUpdated$.next(beersFromBackend)
+      (beersFromBackend) => {
+        this._beersAreUpdated$.next(beersFromBackend)
+      }
     )
   }
 
