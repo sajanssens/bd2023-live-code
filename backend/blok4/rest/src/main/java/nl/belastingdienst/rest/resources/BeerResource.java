@@ -41,9 +41,9 @@ public class BeerResource {
     }
 
     @PUT// .../beers/<een-id>
-    public Beer edit(BeerInput b) {
-        Beer editedBeer = Beer.of(id, b);
-
+    public Beer edit(BeerInput input) {
+        System.out.println("beer:" + id + ", input: " + input);
+        Beer editedBeer = Beer.of(id, input);
         this.repo.getEm().remove(this.repo.get(this.id));
         this.repo.getEm().add(editedBeer);
         return editedBeer;

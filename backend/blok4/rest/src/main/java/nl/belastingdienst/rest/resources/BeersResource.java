@@ -8,7 +8,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.GenericEntity;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
 import nl.belastingdienst.rest.repositories.BeerFakeRepo;
@@ -34,25 +33,25 @@ public class BeersResource {
     @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
     public List<Beer> search(@QueryParam("q") String q) {
         return q != null ?
-                this.repo.getEm().stream()
-                        .filter(s -> s.getMake().toLowerCase().contains(q.toLowerCase()))
-                        .filter(s -> s.getType().toLowerCase().contains(q.toLowerCase()))
-                        .toList() :
-                this.repo.getEm();
+                this.jpaRepo.findByMake(q) :
+                this.jpaRepo.getAll();
     }
 
     @POST // .../beers
     @Produces({APPLICATION_JSON}) @Consumes(APPLICATION_JSON)
     public Beer add(BeerInput input) {
-        Beer newBeer = new Beer(input.make(), input.type(), input.price());
-        this.repo.getEm().add(newBeer);
+        Beer newBeer = Beer.of(input);
+        this.jpaRepo.add(newBeer);
         return newBeer;
     }
 
     // Delegate all requests on a single beer to sub-resource `BeerResource` : ----------------
 
     @Path("{id}") // .../beers/<an-id>
-    public BeerResource beer(@PathParam("id") int id) { return this.beerResource.with(id); }
+    public BeerResource beer(@PathParam("id") int id) {
+        System.out.println("beer" + id);
+        return this.beerResource.with(id);
+    }
 
     // @Path("{id}") // .../beers/<an-id>
     // public BeerResource delete(@PathParam("id") int id) { return beerResource.with(id); }
