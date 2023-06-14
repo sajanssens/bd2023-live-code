@@ -1,4 +1,4 @@
-package nl.belastingdienst.rest.repositories;
+package nl.belastingdienst.rest.util;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Singleton @Startup
-// @TransactionManagement
 public class Dataloader {
 
     @PersistenceContext/*(name = "MySQL")*/
@@ -30,8 +29,10 @@ public class Dataloader {
     }
 
     @PostConstruct // lifecycle hook
-    // @Transactional
+    // @Transactional not necessary yet
     public void init() {
+        // body van de ctor als je met CDI werkt
+
         System.out.println("Filling some beers.........");
         for (Beer beer : this.beers) {
             em.persist(beer);

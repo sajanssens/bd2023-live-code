@@ -18,10 +18,10 @@ import lombok.experimental.SuperBuilder;
 @XmlRootElement
 @Entity
 @NamedQuery(name = "Beer.findAll", query = "select b from Beer b")
+@NamedQuery(name = "Beer.search", query = "select b from Beer b where b.make like :q OR b.type like :q")
 @Table(name = "Beer")
 public class Beer extends AbstractEntity<Integer> {
 
-    @Lob
     private String make;
     private String type;
     private double price;
@@ -42,4 +42,12 @@ public class Beer extends AbstractEntity<Integer> {
     public static Beer of(BeerInput b) {
         return of(null, b);
     }
+
+    public Beer merge(BeerInput input){
+        setMake(input.make());
+        setType(input.type());
+        setPrice(input.price());
+        return this;
+    }
+
 }

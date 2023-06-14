@@ -2,7 +2,6 @@ package nl.belastingdienst.rest.resources;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -14,7 +13,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
-import nl.belastingdienst.rest.repositories.BeerFakeRepo;
+import nl.belastingdienst.rest.repositories.BeerRepo;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -27,9 +26,10 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 public class BeerResource {
 
     @Inject
-    private BeerFakeRepo repo;
+    private BeerRepo repo;
 
     private int id;
+    private int rid;
 
     public BeerResource() { /* for CDI */ }
 
@@ -41,19 +41,10 @@ public class BeerResource {
     }
 
     @PUT// .../beers/<een-id>
-    public Beer edit(BeerInput input) {
-        System.out.println("beer:" + id + ", input: " + input);
-        Beer editedBeer = Beer.of(id, input);
-        this.repo.getEm().remove(this.repo.get(this.id));
-        this.repo.getEm().add(editedBeer);
-        return editedBeer;
-    }
+    public Beer edit(BeerInput input) { return this.repo.edit(id, input); }
 
     @DELETE // .../beers/<een-id>
-    public void delete() {
-        boolean removed = this.repo.getEm().remove(this.repo.get(this.id));
-        if (!removed) throw new BadRequestException();
-    }
+    public void delete() { this.repo.remove(this.id); }
 
     @GET @Path("recipes") // .../beers/<een-id>/recipes
     public Beer getBeerRecipes() {
@@ -65,9 +56,11 @@ public class BeerResource {
         throw new RuntimeException("NotImplemented");
     }
 
-    public BeerResource with(int id) {
-        this.id = id;
-        return this;
+    public BeerResource with(int id) { this.id = id; return this; }
+
+    public BeerResource with(int id, int rid) {
+        this.rid = rid;
+        return with(id);
     }
 }
 

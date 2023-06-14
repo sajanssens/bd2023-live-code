@@ -4,13 +4,15 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
 import nl.belastingdienst.rest.util.NoHelloFoundException;
+import nl.belastingdienst.rest.util.filters.Authorized;
 
 @Path("helloworld")
 public class HelloWorldResource {
 
+    @Authorized
     @GET
     public Response hello() {
-        boolean notFound = false    ;
+        boolean notFound = false;
         if (notFound)
             return Response
                     .status(403)

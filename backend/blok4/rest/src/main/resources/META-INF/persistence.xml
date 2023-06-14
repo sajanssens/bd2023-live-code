@@ -11,12 +11,12 @@
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="jakarta.persistence.sql-load-script-source" value="dummy.sql"/>
 
-            <!-- <property name="eclipselink.target-database" value="MySQL"/>
-             <property name="eclipselink.deploy-on-startup" value="true"/>
-             <property name="eclipselink.logging.level" value="ALL"/>
-             <property name="eclipselink.logging.level.sql" value="ALL"/>
-             <property name="eclipselink.logging.level.cache" value="ALL"/>
-             <property name="eclipselink.logging.parameters" value="true"/>-->
+            <!--<property name="eclipselink.target-database" value="MySQL"/>
+            <property name="eclipselink.deploy-on-startup" value="true"/>-->
+            <property name="eclipselink.logging.level" value="ALL"/>
+            <property name="eclipselink.logging.level.sql" value="ALL"/>
+            <property name="eclipselink.logging.level.cache" value="ALL"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
 

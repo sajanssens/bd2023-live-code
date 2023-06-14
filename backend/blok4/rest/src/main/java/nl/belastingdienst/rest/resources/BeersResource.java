@@ -10,10 +10,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
-import nl.belastingdienst.rest.repositories.BeerFakeRepo;
-import nl.belastingdienst.rest.repositories.BeerJPARepo;
+import nl.belastingdienst.rest.repositories.BeerRepo;
 
-import java.util.List;
+import java.util.Collection;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -21,19 +20,16 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 public class BeersResource {
 
     @Inject
-    private BeerFakeRepo repo;
-
-    @Inject
-    private BeerJPARepo jpaRepo;
+    private BeerRepo jpaRepo;
 
     @Inject
     private BeerResource beerResource;
 
     @GET  // .../beers?q=leffe
     @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
-    public List<Beer> search(@QueryParam("q") String q) {
+    public Collection<Beer> search(@QueryParam("q") String q) {
         return q != null ?
-                this.jpaRepo.findByMake(q) :
+                this.jpaRepo.getByQ(q) :
                 this.jpaRepo.getAll();
     }
 
@@ -48,21 +44,12 @@ public class BeersResource {
     // Delegate all requests on a single beer to sub-resource `BeerResource` : ----------------
 
     @Path("{id}") // .../beers/<an-id>
-    public BeerResource beer(@PathParam("id") int id) {
-        System.out.println("beer" + id);
-        return this.beerResource.with(id);
-    }
-
-    // @Path("{id}") // .../beers/<an-id>
-    // public BeerResource delete(@PathParam("id") int id) { return beerResource.with(id); }
-    //
-    // @Path("{id}") // ../beers/<an-id>
-    // public BeerResource edit(@PathParam("id") int id) { return beerResource.with(id); }
+    public BeerResource beer(@PathParam("id") int id) { return this.beerResource.with(id); }
 
     @Path("{id}/recipes") // .../beers/<an-id>/recipes
     public BeerResource getBeerRecipes(@PathParam("id") int id) { return beerResource.with(id); }
 
     @Path("{id}/recipes/{rid}") // .../beers/<an-id>/recipes/<an-rid>
-    public BeerResource getBeerRecipe(@PathParam("id") int id) { return beerResource.with(id); }
+    public BeerResource getBeerRecipe(@PathParam("id") int id, @PathParam("rid") int rid) { return beerResource.with(id, rid); }
 }
 

@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import {TwoWayDataBindingComponent} from './components/two-way-data-binding/two-way-data-binding.component';
 import {BeersComponent} from './components/beers/beers.component';
 import {HttpClientModule} from "@angular/common/http";
-import { PrettyBeerPipe } from './components/pipes/pretty-beer.pipe';
+import { PrettyBeerPipe } from './pipes/pretty-beer.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { BeerDetailsComponent } from './components/beer-details/beer-details.component';
