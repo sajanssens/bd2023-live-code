@@ -8,12 +8,12 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
-import nl.belastingdienst.rest.domain.AbstractEntity;
+import nl.belastingdienst.rest.domain.JPAEntity;
 import nl.belastingdienst.rest.repositories.Repo;
 
 import java.util.Collection;
 
-public abstract class Resource<E extends AbstractEntity<Integer>> {
+public abstract class Resource<E extends JPAEntity<Integer>> {
 
     protected Repo<E> repo;
 

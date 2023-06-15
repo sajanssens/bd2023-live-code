@@ -5,12 +5,12 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
-import nl.belastingdienst.rest.domain.AbstractEntity;
+import nl.belastingdienst.rest.domain.JPAEntity;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 
-public abstract class Repo<E extends AbstractEntity<Integer>> {
+public abstract class Repo<E extends JPAEntity<Integer>> {
 
     @PersistenceContext // Container managed persistence context
     protected EntityManager em;

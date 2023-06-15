@@ -1,7 +1,6 @@
 package nl.belastingdienst.rest.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Lob;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -20,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @NamedQuery(name = "Beer.findAll", query = "select b from Beer b")
 @NamedQuery(name = "Beer.search", query = "select b from Beer b where b.make like :q OR b.type like :q")
 @Table(name = "Beer")
-public class Beer extends AbstractEntity<Integer> {
+public class Beer extends JPAEntity<Integer> {
 
     private String make;
     private String type;

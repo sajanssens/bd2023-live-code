@@ -10,7 +10,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
-import nl.belastingdienst.rest.repositories.BeerRepo;
+import nl.belastingdienst.rest.repositories.Repo;
+import nl.belastingdienst.rest.util.BEER;
 
 import java.util.Collection;
 
@@ -19,8 +20,8 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 @Path("beers") // @RequestScoped
 public class BeersResource {
 
-    @Inject
-    private BeerRepo jpaRepo;
+    @Inject @BEER
+    private Repo<Beer> repo;
 
     @Inject
     private BeerResource beerResource;
@@ -29,15 +30,15 @@ public class BeersResource {
     @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
     public Collection<Beer> search(@QueryParam("q") String q) {
         return q != null ?
-                this.jpaRepo.getByQ(q) :
-                this.jpaRepo.getAll();
+                this.repo.getByQ(q) :
+                this.repo.getAll();
     }
 
     @POST // .../beers
     @Produces({APPLICATION_JSON}) @Consumes(APPLICATION_JSON)
     public Beer add(BeerInput input) {
         Beer newBeer = Beer.of(input);
-        this.jpaRepo.add(newBeer);
+        this.repo.add(newBeer);
         return newBeer;
     }
 

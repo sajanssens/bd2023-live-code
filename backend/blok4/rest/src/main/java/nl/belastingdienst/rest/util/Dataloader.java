@@ -6,6 +6,7 @@ import jakarta.ejb.Startup;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import nl.belastingdienst.rest.domain.Beer;
+import nl.belastingdienst.rest.util.interceptor.MeasureMethodDuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import java.util.List;
 @Singleton @Startup
 public class Dataloader {
 
-    @PersistenceContext/*(name = "MySQL")*/
+    @PersistenceContext
     private EntityManager em;
 
     private final List<Beer> beers = new ArrayList<>(Arrays.asList(
@@ -28,8 +29,8 @@ public class Dataloader {
         //....
     }
 
+    @MeasureMethodDuration
     @PostConstruct // lifecycle hook
-    // @Transactional not necessary yet
     public void init() {
         // body van de ctor als je met CDI werkt
 

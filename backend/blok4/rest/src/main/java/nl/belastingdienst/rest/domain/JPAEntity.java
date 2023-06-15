@@ -16,7 +16,7 @@ import java.io.Serializable;
 
 @MappedSuperclass
 @Getter @Setter @SuperBuilder @NoArgsConstructor @AllArgsConstructor
-public abstract class AbstractEntity<I extends Serializable> {
+public abstract class JPAEntity<I extends Serializable> {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected I id;

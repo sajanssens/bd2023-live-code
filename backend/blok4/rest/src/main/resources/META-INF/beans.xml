@@ -4,4 +4,8 @@
        bean-discovery-mode="all"
        version="4.0">
 
+    <interceptors>
+        <class>nl.belastingdienst.rest.util.interceptor.MethodDurationInterceptor</class>
+    </interceptors>
+
 </beans>

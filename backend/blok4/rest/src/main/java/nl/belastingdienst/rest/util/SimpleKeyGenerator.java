@@ -10,7 +10,7 @@ public class SimpleKeyGenerator implements KeyGenerator {
 
     @Override
     public Key generateKey() {
-        byte[] key = "simplekey".getBytes();
-        return new SecretKeySpec(key, 0, key.length, "DES");
+        byte[] key = "simplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeysimplekeyoftochnietsimpel".getBytes();
+        return new SecretKeySpec(key, 0, key.length, "HMACSHA256");
     }
 }

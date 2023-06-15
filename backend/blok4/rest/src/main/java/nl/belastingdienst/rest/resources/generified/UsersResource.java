@@ -23,6 +23,7 @@ import java.util.Date;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static java.time.LocalDateTime.now;
+import static nl.belastingdienst.rest.util.PasswordUtils.digest;
 
 @Path("/users")
 public class UsersResource extends Resource<User> implements JsonResource {
@@ -37,6 +38,7 @@ public class UsersResource extends Resource<User> implements JsonResource {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public User register(User u) {
+        u.setPassword(digest(u.getPassword()));
         getDao().add(u);
         return u;
     }
@@ -54,6 +56,7 @@ public class UsersResource extends Resource<User> implements JsonResource {
 
             return output;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new NotAuthorizedException("User " + input + " is not authorized.");
         }
     }

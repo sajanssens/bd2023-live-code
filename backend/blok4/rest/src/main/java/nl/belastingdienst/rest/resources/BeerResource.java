@@ -14,6 +14,7 @@ import jakarta.ws.rs.core.UriInfo;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
 import nl.belastingdienst.rest.repositories.BeerRepo;
+import nl.belastingdienst.rest.util.BEER;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -25,7 +26,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 // This runs @ beers/{id}
 public class BeerResource {
 
-    @Inject
+    @Inject @BEER
     private BeerRepo repo;
 
     private int id;

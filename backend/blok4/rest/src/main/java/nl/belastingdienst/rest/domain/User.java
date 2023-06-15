@@ -24,7 +24,7 @@ import lombok.experimental.SuperBuilder;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SuperBuilder @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @EqualsAndHashCode(callSuper = true)
-public class User extends AbstractEntity<Integer> {
+public class User extends JPAEntity<Integer> {
 
     public static final String FIND_BY_LOGIN_PASSWORD = "User.findByLoginAndPassword";
 
