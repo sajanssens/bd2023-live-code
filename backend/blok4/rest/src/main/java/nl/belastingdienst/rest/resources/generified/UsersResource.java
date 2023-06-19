@@ -3,6 +3,7 @@ package nl.belastingdienst.rest.resources.generified;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.NotAuthorizedException;
 import jakarta.ws.rs.POST;
@@ -13,7 +14,6 @@ import jakarta.ws.rs.core.UriInfo;
 import nl.belastingdienst.rest.domain.User;
 import nl.belastingdienst.rest.repositories.Repo;
 import nl.belastingdienst.rest.repositories.UserRepo;
-import nl.belastingdienst.rest.resources.JsonResource;
 import nl.belastingdienst.rest.util.KeyGenerator;
 
 import java.security.Key;
@@ -25,8 +25,8 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static java.time.LocalDateTime.now;
 import static nl.belastingdienst.rest.util.PasswordUtils.digest;
 
-@Path("/users")
-public class UsersResource extends Resource<User> implements JsonResource {
+@Path("users")
+public class UsersResource extends Resource<User> {
 
     @Context
     private UriInfo uriInfo;
@@ -34,9 +34,11 @@ public class UsersResource extends Resource<User> implements JsonResource {
     @Inject
     private KeyGenerator keyGenerator;
 
+    @Inject @Named("userrepo")
+    public void setRepo(Repo<User> repo) { this.repo = repo; }
+
     @POST
-    @Produces(APPLICATION_JSON)
-    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON) @Consumes(APPLICATION_JSON)
     public User register(User u) {
         u.setPassword(digest(u.getPassword()));
         getDao().add(u);
@@ -44,6 +46,7 @@ public class UsersResource extends Resource<User> implements JsonResource {
     }
 
     @POST @Path("/login")
+    @Produces(APPLICATION_JSON) @Consumes(APPLICATION_JSON)
     public User login(User input) {
         try {
             String username = input.getUsername();
@@ -60,9 +63,6 @@ public class UsersResource extends Resource<User> implements JsonResource {
             throw new NotAuthorizedException("User " + input + " is not authorized.");
         }
     }
-
-    @Inject
-    public void setRepo(Repo<User> repo) { this.repo = repo; }
 
     public UserRepo getDao() { return (UserRepo) this.repo; }
 

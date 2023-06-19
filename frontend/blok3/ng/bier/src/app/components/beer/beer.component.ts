@@ -5,9 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-beer-details',
-  templateUrl: './beer-details.component.html'
+  templateUrl: './beer.component.html'
 })
-export class BeerDetailsComponent {
+export class BeerComponent {
 
   @Input() beer: Beer = {} as Beer
   show: boolean = false;

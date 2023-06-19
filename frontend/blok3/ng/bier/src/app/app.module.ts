@@ -11,8 +11,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { PrettyBeerPipe } from './pipes/pretty-beer.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { BeerDetailsComponent } from './components/beer-details/beer-details.component';
+import { BeerComponent } from './components/beer/beer.component';
 import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { SearchComponent } from './components/search/search.component';
     PrettyBeerPipe,
     NavbarComponent,
     HomeComponent,
-    BeerDetailsComponent,
+    BeerComponent,
     SearchComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
