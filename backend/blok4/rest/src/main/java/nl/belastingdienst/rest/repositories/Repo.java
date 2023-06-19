@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import nl.belastingdienst.rest.domain.JPAEntity;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 
 public abstract class Repo<E extends JPAEntity<Integer>> {
@@ -51,10 +50,5 @@ public abstract class Repo<E extends JPAEntity<Integer>> {
 
     private String typeSimple() { return E().getSimpleName(); }
 
-    @SuppressWarnings("unchecked")
-    private Class<E> E() {
-        ParameterizedType thisDaoClass = (ParameterizedType) getClass().getGenericSuperclass();
-        return (Class<E>) thisDaoClass.getActualTypeArguments()[0];
-    }
+    public abstract Class<E> E();
 }
-

@@ -18,4 +18,6 @@ public class UserRepo extends Repo<User> {
 
         return user;
     }
+
+    @Override public Class<User> E() { return User.class; }
 }

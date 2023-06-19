@@ -24,4 +24,6 @@ public class BeerRepo extends Repo<Beer> {
     @Transactional
     // @TransactionAttribute(TransactionAttributeType.MANDATORY)
     public void remove(int id) { em.remove(get(id)); }
+
+    @Override public Class<Beer> E() { return Beer.class; }
 }
