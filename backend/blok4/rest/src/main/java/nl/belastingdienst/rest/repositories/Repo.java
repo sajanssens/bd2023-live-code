@@ -3,13 +3,12 @@ package nl.belastingdienst.rest.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import nl.belastingdienst.rest.domain.JPAEntity;
 
 import java.util.Collection;
 
-public abstract class Repo<E extends JPAEntity<Integer>> {
+public abstract class Repo<E extends JPAEntity> {
 
     @PersistenceContext // Container managed persistence context
     protected EntityManager em;
@@ -26,7 +25,7 @@ public abstract class Repo<E extends JPAEntity<Integer>> {
         return namedQuery.getResultList();
     }
 
-    @Transactional
+    // @Transactional
     public E add(E c) {
         em.persist(c);
         return c;

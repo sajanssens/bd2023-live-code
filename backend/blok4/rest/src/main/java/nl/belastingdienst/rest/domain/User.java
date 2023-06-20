@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -24,7 +25,8 @@ import lombok.experimental.SuperBuilder;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SuperBuilder @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @ToString @EqualsAndHashCode(callSuper = true)
-public class User extends JPAEntity<Integer> {
+@Table(name = "User")
+public class User extends JPAEntity {
 
     public static final String FIND_BY_LOGIN_PASSWORD = "User.findByLoginAndPassword";
 

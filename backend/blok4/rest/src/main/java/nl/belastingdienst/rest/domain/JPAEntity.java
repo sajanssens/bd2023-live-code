@@ -12,14 +12,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
-
 @MappedSuperclass
 @Getter @Setter @SuperBuilder @NoArgsConstructor @AllArgsConstructor
-public abstract class JPAEntity<I extends Serializable> {
+public abstract class JPAEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected I id;
+    protected Integer id;
 
     @Version // voor optimistic locking
     protected long version;
