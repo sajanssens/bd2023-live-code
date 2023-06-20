@@ -11,11 +11,14 @@
 
     <artifactId>logging</artifactId>
 
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -28,9 +31,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-slf4j-impl</artifactId>
-                    <version>2.14.1</version>
-                    <scope>runtime</scope>
+                    <artifactId>log4j-slf4j2-impl</artifactId>
                 </dependency>
             </dependencies>
             <build>

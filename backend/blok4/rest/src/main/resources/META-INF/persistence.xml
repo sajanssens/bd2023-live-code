@@ -4,17 +4,12 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="MySQL" transaction-type="JTA">
-        <!-- Alleen als je i.p.v. eclipselink hibernate wilt gebruiken -->
-        <!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <!-- Als je i.p.v. eclipselink hibernate wilt gebruiken -->
+        <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
         <jta-data-source>jdbc/mySqlDatasource</jta-data-source>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="jakarta.persistence.sql-load-script-source" value="dummy.sql"/>
-
-            <property name="eclipselink.logging.level" value="ALL"/>
-            <property name="eclipselink.logging.level.sql" value="ALL"/>
-            <property name="eclipselink.logging.level.cache" value="ALL"/>
-            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
 

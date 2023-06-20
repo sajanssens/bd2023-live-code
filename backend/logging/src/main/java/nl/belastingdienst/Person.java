@@ -8,7 +8,7 @@ public class Person {
 
     private Logger log = LoggerFactory.getLogger(Person.class);
 
-    public void doeiets() {
-        log.debug("ik doe iets...");
+    public void logIets() {
+        log.debug("ik log iets...");
     }
 }

@@ -17,5 +17,9 @@
         </Root>
         <!-- for everything from nl.belastingdienst -->
         <Logger name="nl.belastingdienst" level="TRACE"/>
+
+        <!-- for eclipselink, level="ALL" because what exactly will be logged is
+             configured in persistence.xml -->
+        <Logger name="eclipselink.logging" level="ALL"/>
     </Loggers>
 </Configuration>

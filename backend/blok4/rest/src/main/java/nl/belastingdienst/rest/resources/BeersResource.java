@@ -8,6 +8,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import lombok.extern.slf4j.Slf4j;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
 import nl.belastingdienst.rest.repositories.Repo;
@@ -18,6 +19,7 @@ import java.util.Collection;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("beers") // @RequestScoped
+@Slf4j
 public class BeersResource {
 
     @Inject @BEER
@@ -29,6 +31,7 @@ public class BeersResource {
     @GET  // .../beers?q=leffe
     @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
     public Collection<Beer> search(@QueryParam("q") String q) {
+        log.info("INFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
         return q != null ?
                 this.repo.getByQ(q) :
                 this.repo.getAll();
