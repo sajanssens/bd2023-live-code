@@ -1,21 +1,19 @@
 package nl.belastingdienst.rest.util;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.extern.slf4j.Slf4j;
 import nl.belastingdienst.rest.domain.Beer;
-import nl.belastingdienst.rest.util.interceptor.MeasureMethodDuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Singleton @Startup
+// @ApplicationScoped
+@Slf4j
 public class Dataloader {
 
-    @PersistenceContext
+    @PersistenceContext(name = "MySQL")
     private EntityManager em;
 
     private final List<Beer> beers = new ArrayList<>(Arrays.asList(
@@ -25,18 +23,12 @@ public class Dataloader {
             new Beer("LaTrappe", "Dubbel", 2))
     );
 
-    public Dataloader() {
-        //....
-    }
-
-    @MeasureMethodDuration
-    @PostConstruct // lifecycle hook
-    public void init() {
-        // body van de ctor als je met CDI werkt
-
-        System.out.println("Filling some beers.........");
-        for (Beer beer : this.beers) {
-            em.persist(beer);
-        }
-    }
+    // CDI alternative for @Startup from EJB.
+    // @Transactional
+    // public void init(@Observes @Initialized(ApplicationScoped.class) Object pointless) {
+    //     log.info("Filling some beers.........");
+    //     for (Beer beer : this.beers) {
+    //         em.persist(beer);
+    //     }
+    // }
 }

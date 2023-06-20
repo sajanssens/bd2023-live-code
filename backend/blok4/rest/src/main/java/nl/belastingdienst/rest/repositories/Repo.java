@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public abstract class Repo<E extends JPAEntity<Integer>> {
 
-    @PersistenceContext // Container managed persistence context
+    @PersistenceContext(name = "MySQL") // Container managed persistence context
     protected EntityManager em;
 
     public Collection<E> getAll() {
@@ -32,6 +32,7 @@ public abstract class Repo<E extends JPAEntity<Integer>> {
         return c;
     }
 
+    @Transactional
     public boolean remove(String id) {
         E e = em.find(E(), id);
         if (e == null) return false;
@@ -40,6 +41,7 @@ public abstract class Repo<E extends JPAEntity<Integer>> {
         return true;
     }
 
+    @Transactional
     public E update(Integer id, E e) {
         E found = em.find(E(), id);
         if (found == null) throw new BadRequestException("Entity with id " + id + " not found.");
