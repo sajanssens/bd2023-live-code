@@ -7,6 +7,7 @@
         <!-- Als je i.p.v. eclipselink hibernate wilt gebruiken -->
         <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
         <jta-data-source>jdbc/mySqlDatasource</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="jakarta.persistence.sql-load-script-source" value="dummy.sql"/>
