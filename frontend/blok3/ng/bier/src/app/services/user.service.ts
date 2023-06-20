@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {serverUrl} from '../../environments/environment';
 import {User} from "../components/model/User";
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: 'root'}) // ApplicationScoped
 export class UserService {
@@ -17,12 +18,10 @@ export class UserService {
 
   message$ = new Subject<string>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   login(u: User): void {
-    console.log(`${this.uri}/login` + JSON.stringify(u))
-
     this.http.post<User>(`${this.uri}/login`, u, {observe: 'response'} /* = to receive the full httpresponse instead of only the body */)
       .subscribe(
         data => {
@@ -42,10 +41,13 @@ export class UserService {
       );
   }
 
+  isLoggedIn() {
+    return this.loggedInUser != UserService.emptyUser
+  }
 
   logout(): void {
     this.loggedInUser = UserService.emptyUser
-    // this.loggedOut$.next("loggedOut$");
+    this.router.navigate(['/login']);
   }
 
 

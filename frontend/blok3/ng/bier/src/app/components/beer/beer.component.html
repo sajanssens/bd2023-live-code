@@ -1,6 +1,6 @@
 <div class="row p-2">
   <div class="col">
-    <i *ngIf="!show" class="fa-solid fa-plus"  (click)="toggle()">add</i>
+    <i *ngIf="!show" class="fa-solid fa-plus" (click)="toggle()">add</i>
     <ng-container *ngIf="show">
       <form (ngSubmit)="save()" #beerForm="ngForm" class="card p-2 m-2" style="width: 18rem;" novalidate>
         <div class="card-body">

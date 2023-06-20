@@ -1,13 +1,20 @@
-<h2>Log in</h2>
-<form (ngSubmit)="login()" novalidate #f="ngForm">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
-    <button [disabled]="f.invalid">Ok</button>
-  </div>
-</form>
-<p>{{message$ | async}}</p>
+<div class="row p-2">
+  <div class="col">
+    <form (ngSubmit)="login()" #f="ngForm" class="card p-2 m-2" style="width: 18rem;" novalidate>
+      <div class="card-body">
+        <label for="username" class="form-label">
+          Username <span *ngIf="username.errors?.['required']">*</span>
+        </label>
+        <input type="text" id="username" name="username" class="form-control mb-2" required
+               #username="ngModel" [(ngModel)]="user.username">
+
+        <label for="password" class="form-label">
+          Password <span *ngIf="password.errors?.['required']">*</span>
+        </label>
+        <input type="password" id="password" name="password" class="form-control mb-2" required
+               #password="ngModel" [(ngModel)]="user.password">
+
+        <button [disabled]="!f.valid" class="btn btn-primary">Ok</button>
+      </div>
+    </form>
+    <p>{{message$ | async}}</p>

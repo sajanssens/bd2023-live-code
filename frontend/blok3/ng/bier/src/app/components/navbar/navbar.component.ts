@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {isLoggedInGuard} from "../../guards/is-logged-in.guard";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(private userService: UserService) {
+  }
+
+  isLoggedIn() {
+    return this.userService.isLoggedIn();
+  }
+
+  logout() {
+    return this.userService.logout();
+  }
 }

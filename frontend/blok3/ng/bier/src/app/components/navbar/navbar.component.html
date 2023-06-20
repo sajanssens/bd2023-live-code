@@ -12,17 +12,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="home">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn()">
           <a class="nav-link" routerLinkActive="active" routerLink="beers">Beers</a>
         </li>
-        <!--<li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/upload">Upload</a>
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a class="nav-link" routerLinkActive="active" routerLink="login">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/images">Images</a>
-        </li>-->
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a>
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link" routerLinkActive="active" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
