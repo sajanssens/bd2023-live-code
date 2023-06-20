@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @NamedQuery(name = "Beer.findAll", query = "select b from Beer b")
 @NamedQuery(name = "Beer.search", query = "select b from Beer b where b.make like :q OR b.type like :q")
 @Table(name = "Beer")
-public class Beer extends JPAEntity<Integer> {
+public class Beer extends JPAEntity {
 
     private String make;
     private String type;
@@ -42,11 +42,10 @@ public class Beer extends JPAEntity<Integer> {
         return of(null, b);
     }
 
-    public Beer merge(BeerInput input){
+    public Beer merge(BeerInput input) {
         setMake(input.make());
         setType(input.type());
         setPrice(input.price());
         return this;
     }
-
 }
