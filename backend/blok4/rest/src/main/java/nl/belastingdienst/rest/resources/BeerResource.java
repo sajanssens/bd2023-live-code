@@ -1,5 +1,6 @@
 package nl.belastingdienst.rest.resources;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -13,6 +14,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
+import nl.belastingdienst.rest.domain.Role;
 import nl.belastingdienst.rest.repositories.BeerRepo;
 import nl.belastingdienst.rest.util.BEER;
 
@@ -41,9 +43,11 @@ public class BeerResource {
         return beer;
     }
 
+    @RolesAllowed(Role.ADMIN)
     @PUT// .../beers/<een-id>
     public Beer edit(BeerInput input) { return this.repo.edit(id, input); }
 
+    @RolesAllowed(Role.ADMIN)
     @DELETE // .../beers/<een-id>
     public void delete() { this.repo.remove(this.id); }
 
@@ -57,7 +61,10 @@ public class BeerResource {
         throw new RuntimeException("NotImplemented");
     }
 
-    public BeerResource with(int id) { this.id = id; return this; }
+    public BeerResource with(int id) {
+        this.id = id;
+        return this;
+    }
 
     public BeerResource with(int id, int rid) {
         this.rid = rid;

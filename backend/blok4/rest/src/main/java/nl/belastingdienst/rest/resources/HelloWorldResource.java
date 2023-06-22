@@ -1,14 +1,16 @@
 package nl.belastingdienst.rest.resources;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
+import nl.belastingdienst.rest.domain.Role;
 import nl.belastingdienst.rest.util.NoHelloFoundException;
 
 @Path("helloworld")
 public class HelloWorldResource {
 
-    // @Authorized
+    @RolesAllowed(Role.USER)
     @GET
     public Response hello() {
         boolean notFound = false;
