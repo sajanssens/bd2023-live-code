@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-two-way-data-binding',
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TwoWayDataBindingComponent {
   inputValue: string = '';
+
+  getallen = [10, 20, 30]
 
   resetInputValue() {
     this.inputValue = '';

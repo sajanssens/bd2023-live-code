@@ -48,7 +48,7 @@ export class BeerService {
   }
 
   update(b: Beer): void {
-    this.http.patch<Beer>(`${this.url}/${b.id}`, b)
+    this.http.put<Beer>(`${this.url}/${b.id}`, b)
       .subscribe(() => this.getAll());
   }
 }

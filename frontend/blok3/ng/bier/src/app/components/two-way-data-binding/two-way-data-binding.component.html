@@ -5,3 +5,7 @@
 Your name is: {{inputValue}}
 <br><br>
 <button (click)="resetInputValue()">Reset</button>
+
+<ul>
+  <li *ngFor="let getal of getallen; index as i">{{getal}} - id{{i}}</li>
+</ul>
