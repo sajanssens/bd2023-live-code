@@ -2,11 +2,13 @@
   <div class="col">
     <i *ngIf="!show" class="fa-solid fa-plus" (click)="toggle()">add</i>
     <ng-container *ngIf="show">
-      <form (ngSubmit)="save()" #beerForm="ngForm" class="card p-2 m-2" style="width: 18rem;" novalidate>
+      <form (ngSubmit)="save(beerForm)" #beerForm="ngForm" class="card p-2 m-2" style="width: 18rem;"
+            [ngClass]="formClass" novalidate>
         <div class="card-body">
           <label for="make" class="form-label">Make <span *ngIf="make.errors?.['required']">*</span></label>
           <input type="text" #make="ngModel" required minlength="3" id="make" name="make" [(ngModel)]="beer.make"
                  class="form-control mb-2">
+          <span *ngIf="make.errors?.['minlength']">ML</span>
 
           <label for="type" class="form-label">type <span *ngIf="model.errors?.['required']">*</span></label>
           <input type="text" #model="ngModel" required id="type" name="type" [(ngModel)]="beer.type"
@@ -18,7 +20,7 @@
                  class="form-control  mb-2">
 
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button [disabled]="!beerForm.valid" class="btn btn-primary">Ok</button>
+            <button class="btn btn-primary">Ok</button>
             <button (click)="cancel()" class="btn btn-secondary">Cancel</button>
           </div>
         </div>
