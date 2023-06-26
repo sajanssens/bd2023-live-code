@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Beer} from "../model/Beer";
 import {BeerService} from "../../services/beer.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class BeerComponent {
 
-  @Input() beer: Beer = {} as Beer
+  beer: Beer = {} as Beer
   show: boolean = false;
   private editMode = false;
 
