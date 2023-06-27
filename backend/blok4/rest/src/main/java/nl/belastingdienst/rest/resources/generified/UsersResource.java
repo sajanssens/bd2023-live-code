@@ -37,7 +37,7 @@ public class UsersResource extends Resource<User> {
         return getDao().add(u);
     }
 
-    @POST @Path("/login")
+    @POST @Path("login")
     @Produces(APPLICATION_JSON) @Consumes(APPLICATION_JSON)
     public User login(User input) {
         try {
