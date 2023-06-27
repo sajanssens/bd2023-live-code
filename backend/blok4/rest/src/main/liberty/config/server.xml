@@ -32,6 +32,8 @@
             exposeHeaders="authorization"
             maxAge="3600"/>-->
 
+    <mpJwt id="mympjwt" issuer="bramjanssens"/>
+
     <!--FOR JPA:  ******************************************** -->
     <!-- MySQL for production -->
     <library id="MySQLLib">
