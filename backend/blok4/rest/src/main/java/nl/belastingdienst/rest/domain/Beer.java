@@ -32,14 +32,10 @@ public class Beer extends JPAEntity {
         this.id = id;
     }
 
-    public static Beer of(Integer id, BeerInput b) {
-        return Beer.builder().id(id)
+    public static Beer of(BeerInput b) {
+        return Beer.builder()
                 .make(b.make()).type(b.type()).price(b.price())
                 .build();
-    }
-
-    public static Beer of(BeerInput b) {
-        return of(null, b);
     }
 
     public Beer merge(BeerInput input) {
