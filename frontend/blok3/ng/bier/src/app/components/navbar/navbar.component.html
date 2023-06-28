@@ -17,7 +17,8 @@
         </li>
       </ul>
       <a *ngIf="!isLoggedIn()" class="nav-link" routerLinkActive="active" routerLink="login">Login</a>
-      <a *ngIf="isLoggedIn()" class="nav-link" routerLinkActive="active" (click)="logout()">Logout</a>
+      <a *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
     </div>
   </div>
 </nav>
+<div class="user">{{loggedInMessage}}</div>

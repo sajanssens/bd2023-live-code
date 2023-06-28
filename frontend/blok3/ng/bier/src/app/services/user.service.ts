@@ -10,43 +10,47 @@ export class UserService {
 
   public static readonly emptyUser = {} as User;
 
+  public loggedInMessage$ = new Subject<string>();
+  public message$ = new Subject<string>();
+
   private uri = serverUrl + '/users';
-  loggedInUser: User = UserService.emptyUser;
-
-  loggedIn$ = new Subject<string>();
-  // loggedOut$ = new Subject<string>();
-
-  message$ = new Subject<string>();
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
   login(u: User): void {
     this.http.post<User>(`${this.uri}/login`, u, {observe: 'response'} /* = to receive the full httpresponse instead of only the body */)
-      .subscribe(
-        data => {
+      .subscribe({
+        next: (response) => {
           // get the body from the response:
-          this.loggedInUser = data.body ?? UserService.emptyUser;
-          this.loggedIn$.next(this.loggedInUser.username);
-          this.message$.next(`Gebruiker ${this.loggedInUser.username} is ingelogd.`);
-          localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+          const loggedInUser = response.body ?? UserService.emptyUser;
 
-          // or get a header from the response:
-          const token = data.headers.get('Authorization')?.substr(7);
+          this.loggedInMessage$.next(`Logged in as ${loggedInUser.username}`);
+          this.message$.next(`Gebruiker ${loggedInUser.username} is ingelogd.`);
+          localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+
+          // ... or get the Authorization header from the response:
+          const token = response.headers.get('Authorization')?.substr(7);
           localStorage.setItem('token', JSON.stringify(token));
-        }, error => {
-          console.log(error);
-          this.message$.next(`Inloggen is mislukt.  Reden: ${error.statusText}.`);
+        },
+        error: (errorResponse) => {
+          this.message$.next(`Inloggen is mislukt.  Reden: ${errorResponse.statusText}.`);
         }
-      );
+      });
   }
 
   isLoggedIn() {
-    return this.loggedInUser != UserService.emptyUser
+    return localStorage.getItem('loggedInUser') !== null;
+  }
+
+  loggedInUser(): User | null {
+    // @ts-ignore
+    return localStorage.getItem('loggedInUser') as User;
   }
 
   logout(): void {
-    this.loggedInUser = UserService.emptyUser
+    localStorage.removeItem('loggedInUser')
+    this.loggedInMessage$.next('Not logged in')
     this.router.navigate(['/login']);
   }
 

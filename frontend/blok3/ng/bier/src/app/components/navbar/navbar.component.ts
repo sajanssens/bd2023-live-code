@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {isLoggedInGuard} from "../../guards/is-logged-in.guard";
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -8,8 +7,12 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent {
+  loggedInMessage = 'Not logged in.';
 
   constructor(private userService: UserService) {
+    userService.loggedInMessage$.subscribe(m =>
+      this.loggedInMessage = m
+    )
   }
 
   isLoggedIn() {
