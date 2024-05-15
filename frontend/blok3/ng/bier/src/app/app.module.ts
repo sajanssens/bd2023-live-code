@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -15,6 +15,10 @@ import {BeerComponent} from './components/beer/beer.component';
 import {SearchComponent} from './components/search/search.component';
 import {LoginComponent} from './components/login/login.component';
 import {JwtInterceptor} from "./guards/jwt.interceptor";
+import {registerLocaleData} from "@angular/common";
+import locale from '@angular/common/locales/nl';
+
+registerLocaleData(locale);
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import {JwtInterceptor} from "./guards/jwt.interceptor";
   exports: [],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: LOCALE_ID, useValue: 'nl-NL'},
+    {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'}
   ],
   bootstrap: [AppComponent]
 })

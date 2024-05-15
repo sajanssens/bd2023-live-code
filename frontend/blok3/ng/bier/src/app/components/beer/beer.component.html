@@ -13,7 +13,7 @@
           <input type="text" #model="ngModel" required id="type" name="type" [(ngModel)]="beer.type"
                  class="form-control  mb-2">
 
-          <label for="price" class="form-label">price <span
+          <label for="price" class="form-label">price ({{currency()}})<span
             *ngIf="price.errors?.['required']!==undefined">*</span></label>
           <input type="number" #price="ngModel" id="price" name="price" [(ngModel)]="beer.price"
                  class="form-control  mb-2">

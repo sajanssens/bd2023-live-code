@@ -1,8 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, DEFAULT_CURRENCY_CODE, Inject, LOCALE_ID} from '@angular/core';
 import {Beer} from "../model/Beer";
 import {BeerService} from "../../services/beer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {getCurrencySymbol} from "@angular/common";
+
+let BASE_URL;
 
 @Component({
   selector: 'app-beer-details',
@@ -15,7 +18,12 @@ export class BeerComponent {
   private editMode = false;
   formClass: string = 'needs-validation';
 
-  constructor(private beerService: BeerService, private route: ActivatedRoute, private router: Router) {
+  constructor(private beerService: BeerService,
+              private route: ActivatedRoute,
+              private router: Router,
+              @Inject(DEFAULT_CURRENCY_CODE) private currencyCode: string,
+              @Inject(LOCALE_ID) private localeId: string
+  ) {
     if (this.route.snapshot.paramMap.has('id')) {
       this.show = true;
       this.editMode = true;
@@ -47,5 +55,10 @@ export class BeerComponent {
     if (this.editMode) {
       this.router.navigate(['beers'])
     }
+  }
+
+
+  currency() {
+    return getCurrencySymbol(this.currencyCode, "narrow", this.localeId);
   }
 }
