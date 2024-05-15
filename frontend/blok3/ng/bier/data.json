@@ -36,5 +36,22 @@
       "price": 1.09,
       "id": 7
     }
+  ],
+  "login": [
+    {
+      "username": "bram",
+      "password": "bram",
+      "id": 1
+    },
+    {
+      "username": "bram",
+      "password": "bram",
+      "id": 2
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 3
+    }
   ]
 }
