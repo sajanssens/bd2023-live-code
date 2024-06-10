@@ -1,5 +1,7 @@
 package nl.belastingdienst.rest.resources;
 
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -11,6 +13,7 @@ import jakarta.ws.rs.QueryParam;
 import lombok.extern.slf4j.Slf4j;
 import nl.belastingdienst.rest.domain.Beer;
 import nl.belastingdienst.rest.domain.BeerInput;
+import nl.belastingdienst.rest.domain.Role;
 import nl.belastingdienst.rest.repositories.Repo;
 import nl.belastingdienst.rest.util.BEER;
 
@@ -20,6 +23,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("beers") // @RequestScoped
 @Slf4j
+@DeclareRoles({Role.USER, Role.ADMIN})
 public class BeersResource {
 
     @Inject @BEER
@@ -29,20 +33,19 @@ public class BeersResource {
     private BeerResource beerResource;
 
     @GET  // .../beers?q=leffe
-    @Produces({APPLICATION_JSON}) // ask by using header `Accept: application/json` or `Accept: application/xml`
+    @Produces(APPLICATION_JSON) // ask by using header `Accept: application/json` or `Accept: application/xml`
     public Collection<Beer> search(@QueryParam("q") String q) {
-        log.info("INFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        log.info("searching...");
         return q != null ?
                 this.repo.getByQ(q) :
                 this.repo.getAll();
     }
 
     @POST // .../beers
-    @Produces({APPLICATION_JSON}) @Consumes(APPLICATION_JSON)
+    @RolesAllowed(Role.ADMIN)
+    @Produces(APPLICATION_JSON) @Consumes(APPLICATION_JSON)
     public Beer add(BeerInput input) {
-        Beer newBeer = Beer.of(input);
-        this.repo.add(newBeer);
-        return newBeer;
+        return this.repo.add(Beer.of(input));
     }
 
     // Delegate all requests on a single beer to sub-resource `BeerResource` : ----------------

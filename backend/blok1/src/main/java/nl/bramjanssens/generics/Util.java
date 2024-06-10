@@ -7,7 +7,19 @@ import java.util.List;
 @Slf4j
 public class Util {
 
-    public static void verwerkUnsafe(List list) {
+    public static void verwerkUnsafeRaw(List list) {
+        for (Object o : list) {
+            // try {
+            Person p = (Person) o;
+            System.out.println(p.getName());
+            // } catch (ClassCastException e) {
+            //     System.out.println("This is not a person..." + e.getMessage());
+            //     e.printStackTrace();
+            // }
+        }
+    }
+
+    public static void verwerkSafeRaw(List list) {
         for (Object o : list) {
             if (o instanceof Person) {
                 Person p = (Person) o;
@@ -27,7 +39,7 @@ public class Util {
 
     // only List<Person> allowed, nothing else (for T)
     // reading from and writing to list both allowed and safe
-    public static void verwerkSafeInvariant(List<Person> list) {
+    public static void verwerkSafe(List<Person> list) {
         for (Person person : list) {
             System.out.println(person.getName());
         }

@@ -29,12 +29,38 @@
       "type": "Tripel",
       "price": 1,
       "id": 6
+    }
+  ],
+  "login": [
+    {
+      "username": "bram",
+      "password": "bram",
+      "id": 1
     },
     {
-      "make": "Bram",
-      "type": "Dubbel",
-      "price": 1.09,
-      "id": 7
+      "username": "bram",
+      "password": "bram",
+      "id": 2
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 3
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 4
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 5
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 6
     }
   ]
 }

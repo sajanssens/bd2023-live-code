@@ -51,3 +51,17 @@ function checkAge(age: number) {
 function myFunction() {
     ages.find((c) => c.id < 10);
 }
+
+main();
+
+function main() {
+    const han = {
+        name: 'Han Solo',
+        age: 42
+    };
+
+    const {name, age} = han; // Object destructuring
+
+    console.log(`${name} is ${age}`);
+}
+

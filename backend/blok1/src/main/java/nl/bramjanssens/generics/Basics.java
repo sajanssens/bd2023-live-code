@@ -3,11 +3,12 @@ package nl.bramjanssens.generics;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nl.bramjanssens.generics.Util.verwerkSafe;
 import static nl.bramjanssens.generics.Util.verwerkSafeContravariant;
 import static nl.bramjanssens.generics.Util.verwerkSafeCovariant;
-import static nl.bramjanssens.generics.Util.verwerkSafeInvariant;
-import static nl.bramjanssens.generics.Util.verwerkUnsafe;
+import static nl.bramjanssens.generics.Util.verwerkSafeRaw;
 import static nl.bramjanssens.generics.Util.verwerkUnsafeArray;
+import static nl.bramjanssens.generics.Util.verwerkUnsafeRaw;
 
 public class Basics {
 
@@ -19,15 +20,17 @@ public class Basics {
         personenUnsafe.add(new Person("Leon"));
         personenUnsafe.add("Corne");
 
-        verwerkUnsafe(personenUnsafe);
+        verwerkUnsafeRaw(personenUnsafe);
+        verwerkSafeRaw(personenUnsafe);
 
         List<Person> personenSafe = new ArrayList<>();
         personenSafe.add(new Person("Bram"));
         personenSafe.add(new Person("Leon"));
         // personenSafe.add("Corne"); // NOK
 
-        verwerkUnsafe(personenSafe);
-        verwerkSafeInvariant(personenSafe);
+        verwerkUnsafeRaw(personenSafe);
+        verwerkSafeRaw(personenUnsafe);
+        verwerkSafe(personenSafe);
 
         // Creating (and using) generic classes:
         Box<Integer> bi = new Box<>(42); //   Integer is a type argument
@@ -48,22 +51,22 @@ public class Basics {
         persons.add(new Trainee());
         persons.add(new Trainer());
 
-        List<Trainee> javaKlasXII = new ArrayList<>();
-        // javaKlasXII.add(new Person());
-        javaKlasXII.add(new Trainee());
-        // javaKlasXII.add(new Trainer());
+        List<Trainee> trainees = new ArrayList<>();
+        // trainees.add(new Person());
+        trainees.add(new Trainee());
+        // trainees.add(new Trainer());
 
         // what types can I pass to methods?
 
-        verwerkSafeInvariant(persons);
-        // verwerkSafeInvariant(javaKlasXII);
+        verwerkSafe(persons);
+        // verwerkSafeInvariant(trainees);
 
         verwerkSafeCovariant(persons);
-        verwerkSafeCovariant(javaKlasXII);
+        verwerkSafeCovariant(trainees);
 
         verwerkSafeContravariant(objects);
         verwerkSafeContravariant(persons);
-        // verwerkSafeContravariant(javaKlasXII);
+        // verwerkSafeContravariant(trainees);
 
         verwerkUnsafeArray(new Trainee[10]);
     }

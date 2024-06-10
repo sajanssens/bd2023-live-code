@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BeerService} from "../../services/beer.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Beer} from "../model/Beer";
 
 @Component({
@@ -12,9 +12,6 @@ export class BeersComponent implements OnInit {
   beers$ = {} as Observable<Beer[]>
   message: string = ''
 
-  private subscription: Subscription = {} as Subscription
-  beerToAdd: Beer = {} as Beer
-
   constructor(private beerService: BeerService) {
   }
 
@@ -23,14 +20,13 @@ export class BeersComponent implements OnInit {
     this.beerService.getAll()
   }
 
-  delete(id?: number) {
+  delete(e: Event, id?: number) {
     this.beerService.delete(id)
+    e.stopPropagation();
   }
 
   handleSearch(e: string) {
-    if (typeof (e) == 'string') {
-      this.beerService.search(e)
-    }
+    this.beerService.search(e)
   }
 
 }

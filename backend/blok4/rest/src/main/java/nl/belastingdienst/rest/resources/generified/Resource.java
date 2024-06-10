@@ -24,19 +24,19 @@ public abstract class Resource<E extends JPAEntity> {
     public abstract void setRepo(Repo<E> repo);
 
     @GET
-    @Produces({APPLICATION_JSON})
+    @Produces(APPLICATION_JSON)
     public Collection<E> getAll(@QueryParam("q") String q) {
         return q == null ? repo.getAll() : repo.getByQ(q);
     }
 
     @GET @Path("{id}")
-    @Produces({APPLICATION_JSON})
+    @Produces(APPLICATION_JSON)
     public E get(@PathParam("id") Integer id) {
         return repo.get(id);
     }
 
     @POST
-    @Produces({APPLICATION_JSON}) @Consumes({APPLICATION_JSON})
+    @Produces(APPLICATION_JSON) @Consumes(APPLICATION_JSON)
     public E post(E e) {
         if (repo.add(e) != null) {
             return e;
