@@ -17,7 +17,6 @@ import nl.belastingdienst.rest.repositories.UserRepo;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-import static io.smallrye.jwt.util.KeyUtils.readPrivateKey;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static java.time.Instant.now;
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -64,7 +63,9 @@ public class UsersResource extends Resource<User> {
                 .groups(user.getRoles())
                 .issuedAt(now())
                 .expiresAt(now().plus(30, MINUTES))
-                .sign(readPrivateKey("private-key.pem"));
+                .sign("S3cretK3y") // with simple key; also include this one in server.xml's <mpJwt ...  sharedKey=...>
+                // .sign(readPrivateKey("private-key.pem"))
+                ;
     }
 
     public UserRepo getDao() { return (UserRepo) this.repo; }

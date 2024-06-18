@@ -32,7 +32,7 @@
             exposeHeaders="authorization"
             maxAge="3600"/>-->
 
-    <mpJwt id="mympjwt" issuer="bramjanssens"/>
+    <mpJwt id="mympjwt" issuer="bramjanssens" sharedKey="S3cretK3y"/>
 
     <!--FOR JPA:  ******************************************** -->
     <!-- MySQL for production -->
